@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat66 상세페이지</title>
-    <!-- 상세페이지 입니다. -->
 
     <style>
-        /* CSS 작성 구역 */
+
+        /* 팀 소개 구역 */
 
         .teamAbout {
+            margin: auto 30px;
+
             border: none;
             border-radius: 20px;
+
             background-color: aliceblue;
         }
 
@@ -21,7 +24,7 @@
             justify-content: flex-start;
         }
 
-        .contentBox {
+        .flexBox > div {
             width: 50%;
         }
         
@@ -34,8 +37,8 @@
             border-radius: 20px;
 
             align-self: center;
-            margin: 30px auto 30px auto;
-            padding: 30px 10px 30px 10px;
+            margin: 30px auto;
+            padding: 30px 10px;
 
             display: flex;
             flex-direction: row; /*행/열 정렬*/
@@ -45,7 +48,7 @@
 
         .memberlist > div {
             width: 90%;
-            margin: auto 20px auto 20px;
+            margin: auto 20px;
 
             display: flex;
             flex-direction: column; 
@@ -89,29 +92,28 @@
         // 페이지가 로드될 때 실행되는 함수
         window.onload = async function() {
             try {
-                // 예시: 'teams' 컬렉션에서 모든 문서를 가져오는 코드
                 const querySnapshot = await getDocs(collection(db, 'team'));
                 querySnapshot.forEach(doc => {
 
-                    const teamName = doc.data().name;
-                    const teamIntroduction = doc.data().introduction;
-                    const teamProject = doc.data().project;
-                    const teamGoal = doc.data().goal;
-                    const teamTime = doc.data().time;
-                    const teamRule = doc.data().rule;
-
-                    console.log(`Team Name: ${teamName}, Introduction: ${teamIntroduction}, project: ${teamProject}, goal: ${teamGoal},  time: ${teamTime}, rule: ${teamRule}`);
+                    const teamData = { // 객체 형태로 선언
+                        teamName: doc.data().name,
+                        teamIntroduction: doc.data().introduction,
+                        teamProject: doc.data().project,
+                        teamGoal: doc.data().goal,
+                        teamTime: doc.data().time,
+                        teamRule: doc.data().rule
+                    };
                     
-                    // body에 데이터 표시하기
-                    document.getElementById('teamName').innerText = teamName;
-                    document.getElementById('teamIntroduction').innerText = teamIntroduction;
-                    document.getElementById('teamProject').innerText = teamProject;
-                    document.getElementById('teamGoal').innerText = teamGoal;
-                    document.getElementById('teamTime').innerText = teamTime;
-                    document.getElementById('teamRule').innerText = teamRule;
+                    // body에 데이터 표시하기, 객체 형태로 할당
+                    document.getElementById('teamName').innerText = teamData.teamName;
+                    document.getElementById('teamIntroduction').innerText = teamData.teamIntroduction;
+                    document.getElementById('teamProject').innerText = teamData.teamProject;
+                    document.getElementById('teamGoal').innerText = teamData.teamGoal;
+                    document.getElementById('teamTime').innerText = teamData.teamTime;
+                    document.getElementById('teamRule').innerText = teamData.teamRule;
                 });
             } catch (error) {
-                console.error('Error getting documents:', error);
+                console.error('팀 데이터 불러오기 오류 : ', error);
             }
         };
 
@@ -126,12 +128,12 @@
     <!-- 나영님 / 팀 내용 구역 -->
     <div class="teamAbout">
         <div class="flexBox">
-            <div class="contentBox">
+            <div>
                 <div>
                     <b>팀 소개</b><br/>
-                    <span id="teamName"></span><br/>
-                    <span id="teamIntroduction"></span><br/>
-                    <span id="teamProject"></span><br/>
+                    팀명 : <span id="teamName"></span><br/>
+                    팀 소개 : <span id="teamIntroduction"></span><br/>
+                    프로젝트 소개 : <span id="teamProject"></span><br/>
 
                 </div><br/>
                 <div>
@@ -143,15 +145,14 @@
                     <span id="teamTime"></span>
                 </div><br/>
             </div>
-            <div class="contentBox">
+            <div>
                 <b>팀 규칙</b><br/>
                 <span id="teamRule"></span>
             </div>
         </div>
-        <a href="guestbook.html", style="background-color: rgb(219, 219, 219); color: rgb(4, 4, 4);"> 방명록 </a>
+        <a href="guestbook.html", style="background-color: rgb(219, 219, 219); color: rgb(4, 4, 4);">방명록</a>
 
     </div>
-
 
 
 
