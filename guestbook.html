@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat66 방명록</title>
     <!-- 방명록 페이지입니다. -->
+
+    <style>
+        /* CSS 작성 구역 */
+    </style>
+
+    <script type="module">
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAio8CbaweQ5YCb0-Zx3STpG8gP6sVyp0E",
+            authDomain: "cat66-d3757.firebaseapp.com",
+            projectId: "cat66-d3757",
+            storageBucket: "cat66-d3757.appspot.com",
+            messagingSenderId: "238522357447",
+            appId: "1:238522357447:web:2d3c6a05f1402496da50e2"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // JS 작성 구역
+
+
+    </script>
+
+
 </head>
+
 <body>
-    
+    <h3> cat66의 방명록 페이지 입니다. </h3>
+    <a href="index.html">페이지 이동 테스트 / 메인으로 </a>
 </body>
+
 </html>
