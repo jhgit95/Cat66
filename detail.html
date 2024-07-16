@@ -25,6 +25,41 @@
             width: 50%;
         }
         
+        /* 팀원 구역 */
+        
+        .memberlist {
+            background-color: #DCDCDC;
+
+            width: 90%;
+            border-radius: 20px;
+
+            align-self: center;
+            margin: 30px auto 30px auto;
+            padding: 30px 10px 30px 10px;
+
+            display: flex;
+            flex-direction: row; /*행/열 정렬*/
+            align-items: center; /*y축-교차축*/
+            justify-content: center; /*x축-중심축*/
+        }
+
+        .memberlist > div {
+            width: 90%;
+            margin: auto 20px auto 20px;
+
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .photo {
+            width: 200px;
+            height: 150px;
+            border-radius: 20px;
+        }
+
+
     </style>
 
     <script type="module">
@@ -121,6 +156,29 @@
 
 
     <!-- 지은님 / 팀원 구역 -->
+    <div class="memberlist">
+        <div class="member1">
+            <img class="photo" src="./test/cat.jpg">
+            <a>member1</a>
+        </div>
+        <div class="member2">
+            <img class="photo" src="./test/cat.jpg">
+            <a>member2</a>
+        </div>
+        <div class="member2">
+            <img class="photo" src="./test/cat.jpg">
+            <a>member3</a>
+        </div>
+        <div class="member2">
+            <img class="photo" src="./test/cat.jpg">
+            <a>member4</a>
+        </div>
+        <div class="member2">
+            <img class="photo" src="./test/cat.jpg">
+            <a>member5</a>
+        </div>
+    </div>
+
 
 </body>
 
