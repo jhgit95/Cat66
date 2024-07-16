@@ -51,6 +51,34 @@
 
         // JS 작성 구역
 
+        // 페이지가 로드될 때 실행되는 함수
+        window.onload = async function() {
+            try {
+                // 예시: 'teams' 컬렉션에서 모든 문서를 가져오는 코드
+                const querySnapshot = await getDocs(collection(db, 'team'));
+                querySnapshot.forEach(doc => {
+
+                    const teamName = doc.data().name;
+                    const teamIntroduction = doc.data().introduction;
+                    const teamProject = doc.data().project;
+                    const teamGoal = doc.data().goal;
+                    const teamTime = doc.data().time;
+                    const teamRule = doc.data().rule;
+
+                    console.log(`Team Name: ${teamName}, Introduction: ${teamIntroduction}, project: ${teamProject}, goal: ${teamGoal},  time: ${teamTime}, rule: ${teamRule}`);
+                    
+                    // body에 데이터 표시하기
+                    document.getElementById('teamName').innerText = teamName;
+                    document.getElementById('teamIntroduction').innerText = teamIntroduction;
+                    document.getElementById('teamProject').innerText = teamProject;
+                    document.getElementById('teamGoal').innerText = teamGoal;
+                    document.getElementById('teamTime').innerText = teamTime;
+                    document.getElementById('teamRule').innerText = teamRule;
+                });
+            } catch (error) {
+                console.error('Error getting documents:', error);
+            }
+        };
 
     </script>
 
@@ -64,11 +92,26 @@
     <div class="teamAbout">
         <div class="flexBox">
             <div class="contentBox">
-                <div><b>팀 소개</b><br/>팀 소개란입니다.</div><br/>
-                <div><b>팀 목표</b><br/>팀 목표란입니다.</div><br/>
-                <div><b>팀 약속</b><br/>팀 약속란입니다.</div><br/>
+                <div>
+                    <b>팀 소개</b><br/>
+                    <span id="teamName"></span><br/>
+                    <span id="teamIntroduction"></span><br/>
+                    <span id="teamProject"></span><br/>
+
+                </div><br/>
+                <div>
+                    <b>팀 목표</b><br/>
+                    <span id="teamGoal"></span>
+                </div><br/>
+                <div>
+                    <b>팀 약속</b><br/>
+                    <span id="teamTime"></span>
+                </div><br/>
             </div>
-            <div class="contentBox"><b>팀 규칙</b><br/>팀 규칙란입니다.</div>
+            <div class="contentBox">
+                <b>팀 규칙</b><br/>
+                <span id="teamRule"></span>
+            </div>
         </div>
         <a href="guestbook.html", style="background-color: rgb(219, 219, 219); color: rgb(4, 4, 4);"> 방명록 </a>
 
