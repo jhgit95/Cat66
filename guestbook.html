@@ -1,49 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat66 방명록</title>
     <!-- 방명록 페이지입니다. -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
-        /* CSS 작성 구역 */
+      /* CSS 작성 구역 */
     </style>
 
     <script type="module">
+      // Firebase SDK 라이브러리 가져오기
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        query,
+        orderBy,
+        limit,
+        getDocs,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-        // Firebase SDK 라이브러리 가져오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      // Firebase 구성 정보 설정
+      const firebaseConfig = {
+        apiKey: "AIzaSyAio8CbaweQ5YCb0-Zx3STpG8gP6sVyp0E",
+        authDomain: "cat66-d3757.firebaseapp.com",
+        projectId: "cat66-d3757",
+        storageBucket: "cat66-d3757.appspot.com",
+        messagingSenderId: "238522357447",
+        appId: "1:238522357447:web:2d3c6a05f1402496da50e2",
+      };
 
-        // Firebase 구성 정보 설정
-        const firebaseConfig = {
-            apiKey: "AIzaSyAio8CbaweQ5YCb0-Zx3STpG8gP6sVyp0E",
-            authDomain: "cat66-d3757.firebaseapp.com",
-            projectId: "cat66-d3757",
-            storageBucket: "cat66-d3757.appspot.com",
-            messagingSenderId: "238522357447",
-            appId: "1:238522357447:web:2d3c6a05f1402496da50e2"
+      // Firebase 인스턴스 초기화
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // JS 작성 구역
+
+      // 현재 시간 생성
+      const now = new Date();
+
+      // 등록 버튼을 누르면, 해당 내용을 파이어베이스에 저장하는 기능
+      $("#write_btn").click(async function () {
+        //텍스트 박스에 작성된 내용을 가져오는 코드
+        let name = $(`#name_input_box`).val();
+        let content = $("#content_input_box").val();
+
+        let write_content = {
+          name: name,
+          content: content,
+          time: now,
         };
 
-        // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        // 실제 파이어베이스에 저장하는 코드
+        await addDoc(collection(db, "guest_book"), write_content);
 
-        // JS 작성 구역
+        //알림창
+        alert("댓글 작성 완료~");
 
+        // 페이지 새로고침
+        window.location.reload();
+      });
 
+      // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능. 현재는 임시로 2개만 가져옵니다.
+      const guest_book = await getDocs(
+        query(collection(db, "guest_book"), orderBy("time", "desc"), limit(2))
+      );
+      guest_book.forEach((doc) => {
+        const data = doc.data();
+
+        // 타임스템프 시간을 사람 눈에 보기 편하게 바꾸는 기능(yy-mm-dd hh:mm:ss)
+        let day = data.time.toDate();
+
+        let year = day.getFullYear();
+        let month = ("0" + (day.getMonth() + 1)).slice(-2);
+        let days = ("0" + day.getDate()).slice(-2);
+        let hours = ("0" + day.getHours()).slice(-2);
+        let minutes = ("0" + day.getMinutes()).slice(-2);
+        let seconds = ("0" + day.getSeconds()).slice(-2);
+
+        let writed_time =
+          year +
+          "-" +
+          month +
+          "-" +
+          days +
+          " " +
+          hours +
+          ":" +
+          minutes +
+          ":" +
+          seconds;
+
+        //콘솔창에서 데이터 확인 가능
+        console.log("guest_book 데이터 == ", data);
+        console.log("time == ", writed_time);
+      });
     </script>
+  </head>
 
-
-</head>
-
-<body>
-    <h3> cat66의 방명록 페이지 입니다. </h3>
+  <body>
+    <h3>cat66의 방명록 페이지 입니다.</h3>
     <a href="index.html">페이지 이동 테스트 / 메인으로 </a>
-</body>
 
+    <!-- test_html은 기능 작동을 확인하기 위해 작성된 임시 코드입니다. 추후 삭제 예정  -->
+    <div class="test_html">
+      <div class="main_title">
+        <h3>방명록 기능 테스트</h3>
+      </div>
+
+      <div class="write_area">
+        <div class="write_box">
+          <div class="ww">
+            <label for="name" class="form-label">이 름</label>
+
+            <input type="text" id="name_input_box" placeholder="이름박스" />
+
+            <button class="write_btn" id="write_btn">등록</button>
+          </div>
+          <div class="ww">
+            <label for="content" class="form-label">내 용</label>
+            <input type="text" id="content_input_box" placeholder="내용박스" />
+          </div>
+        </div>
+
+        <div class="comment_area">
+          <div class="comment_box">
+            <h3>방명록이 들어올 영역</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
