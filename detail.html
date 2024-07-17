@@ -188,8 +188,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        </script>
-        <script>
 
         // 페이지가 로드될 때 실행되는 함수
         window.onload = async function() {
@@ -237,13 +235,7 @@
             }
         };
         
-    </script>
-    <script>
-        function navigate(url) { // 방명록으로 이동하는 용도
-            window.location.assign(url);
-        }
-    </script>
-    <script type="module">
+        
         // modal 띄우기 (img 클릭 시)
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector('.modal');
@@ -271,6 +263,12 @@
                 }
             });
         });
+
+    </script>
+    <script>
+        function navigate(url) { // 방명록으로 이동하는 용도
+            window.location.assign(url);
+        }
     </script>
 
 </head>
