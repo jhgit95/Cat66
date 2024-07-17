@@ -10,13 +10,22 @@
 
         /* 팀 소개 구역 */
 
+        .bannerBox {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+
         .teamAbout {
-            margin: auto 30px;
+            margin: 30px auto;
+            padding: 30px 10px;
+
+            width: 90%;
 
             border: none;
             border-radius: 20px;
 
-            background-color: aliceblue;
+            background-color: rgb(255, 237, 191);
         }
 
         .flexBox {
@@ -26,12 +35,30 @@
 
         .flexBox > div {
             width: 50%;
+
+            padding: 15px;
+        }
+
+        .visitBtnWrp {
+            display: flex; 
+            justify-content: flex-end;
+        }
+
+        .visitBtnWrp > div {
+            width: 50px;
+            padding: 10px;
+
+            background-color: rgb(219, 219, 219); 
+            color: rgb(4, 4, 4);
+            border-radius: 10px;
+
+            cursor: pointer;
         }
         
         /* 팀원 구역 */
         
         .memberlist {
-            background-color: #DCDCDC;
+            background-color: #dcdcdc;
 
             width: 90%;
             border-radius: 20px;
@@ -109,21 +136,46 @@
                     document.getElementById('teamIntroduction').innerText = teamData.teamIntroduction;
                     document.getElementById('teamProject').innerText = teamData.teamProject;
                     document.getElementById('teamGoal').innerText = teamData.teamGoal;
-                    document.getElementById('teamTime').innerText = teamData.teamTime;
-                    document.getElementById('teamRule').innerText = teamData.teamRule;
+                    // document.getElementById('teamTime').innerText = teamData.teamTime;
+                    // document.getElementById('teamRule').innerText = teamData.teamRule;
+
+                    const teamTimeContainer = document.getElementById('teamTimeContainer');
+                    teamTimeContainer.innerHTML = ''; // 기존 내용을 초기화
+                    teamData.teamTime.forEach((time, index) => {
+                        const timeElement = document.createElement('span');
+                        timeElement.innerText = `${index + 1}) ${time}`;
+                        teamTimeContainer.appendChild(timeElement);
+                        teamTimeContainer.appendChild(document.createElement('br')); 
+                    });
+
+                    const teamRuleContainer = document.getElementById('teamRuleContainer');
+                    teamRuleContainer.innerHTML = ''; // 기존 내용을 초기화
+                    teamData.teamRule.forEach((rule, index) => {
+                        const ruleElement = document.createElement('span');
+                        ruleElement.innerText = `${index + 1}) ${rule}`;
+                        teamRuleContainer.appendChild(ruleElement);
+                        teamRuleContainer.appendChild(document.createElement('br')); 
+                    });
                 });
             } catch (error) {
                 console.error('팀 데이터 불러오기 오류 : ', error);
             }
         };
-
+        
+    </script>
+    <script>
+        function navigate(url) { // 방명록으로 이동하는 용도
+            window.location.assign(url);
+        }
     </script>
 
 </head>
 
 <body>
-    <h2>캣 66 프로젝트</h2>
-    <h4>JAVA_6기 팀66</h4>
+    <div class="bannerBox">
+        <div style="margin: 20px auto;">캣 66 프로젝트</div>
+        <div>JAVA_6기 팀66</div>
+    </div>
 
     <!-- 나영님 / 팀 내용 구역 -->
     <div class="teamAbout">
@@ -133,24 +185,26 @@
                     <b>팀 소개</b><br/>
                     팀명 : <span id="teamName"></span><br/>
                     팀 소개 : <span id="teamIntroduction"></span><br/>
-                    프로젝트 소개 : <span id="teamProject"></span><br/>
 
                 </div><br/>
                 <div>
-                    <b>팀 목표</b><br/>
+                    <b>프로젝트 목표</b><br/>
+                    [<span id="teamProject"></span>]
                     <span id="teamGoal"></span>
                 </div><br/>
                 <div>
                     <b>팀 약속</b><br/>
-                    <span id="teamTime"></span>
+                    <span id="teamTimeContainer"></span>
                 </div><br/>
             </div>
             <div>
                 <b>팀 규칙</b><br/>
-                <span id="teamRule"></span>
+                <span id="teamRuleContainer"></span>
             </div>
         </div>
-        <a href="guestbook.html", style="background-color: rgb(219, 219, 219); color: rgb(4, 4, 4);">방명록</a>
+        <div class="visitBtnWrp" onclick="navigate('guestbook.html')">
+            <div>방명록</div>
+        </div>
 
     </div>
 
