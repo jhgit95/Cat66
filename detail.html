@@ -113,6 +113,7 @@
             height: 150px;
             border-radius: 20px;
             margin-bottom: 5px;
+            object-fit: cover;
         }
 
         /* modal */
@@ -188,11 +189,9 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        </script>
-        <script>
 
-        // 페이지가 로드될 때 실행되는 함수
-        window.onload = async function() {
+        // 팀 소개 데이터를 가져오고 화면에 띄우는 함수 (나영)
+        async function loadTeam() {
             try {
                 const querySnapshot = await getDocs(collection(db, 'team'));
                 querySnapshot.forEach(doc => {
@@ -237,13 +236,30 @@
             }
         };
         
-    </script>
-    <script>
-        function navigate(url) { // 방명록으로 이동하는 용도
-            window.location.assign(url);
+        // member 이름, 사진 로드 함수 (지은)
+        async function loadMembers() {
+            const members = await getDocs(collection(db, 'member'));
+                let index = 1;
+                members.forEach((member) => {
+                    const memberPhoto = member.data().photo;
+                    const memberName = member.data().name;
+                    
+                    document.getElementById(`img_member${index}`).src = memberPhoto;
+                    document.getElementById(`name_member${index++}`).textContent = memberName;
+                });
         }
-    </script>
-    <script type="module">
+
+        // 페이지 로드 시 데이터 초기화 
+        function initialize() {
+            loadTeam();
+            loadMembers();
+        }
+
+        // 페이지가 로드될 때 실행
+        window.onload = initialize;
+        
+
+        
         // modal 띄우기 (img 클릭 시)
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector('.modal');
@@ -271,6 +287,12 @@
                 }
             });
         });
+
+    </script>
+    <script>
+        function navigate(url) { // 방명록으로 이동하는 용도
+            window.location.assign(url);
+        }
     </script>
 
 </head>
@@ -318,26 +340,26 @@
     <div class="memberlist">
         <div class="memberline">
             <div class="member">
-                <img class="photo" src="./test/cat.jpg">
-                <a>member1</a>
+                <img id="img_member1" class="photo" src="./test/cat.jpg">
+                <a id="name_member1">member1</a>
             </div>
             <div class="member">
-                <img class="photo" src="./test/cat.jpg">
-                <a>member2</a>
+                <img id="img_member2" class="photo" src="./test/cat.jpg">
+                <a id="name_member2">member2</a>
             </div>
         </div>
         <div class="memberline">
             <div class="member">
-                <img class="photo" src="./test/cat.jpg">
-                <a>member3</a>
+                <img id="img_member3" class="photo" src="./test/cat.jpg">
+                <a id="name_member3">member3</a>
             </div>
             <div class="member">
-                <img class="photo" src="./test/cat.jpg">
-                <a>member4</a>
+                <img id="img_member4" class="photo" src="./test/cat.jpg">
+                <a  id="name_member4">member4</a>
             </div>
             <div class="member">
-                <img class="photo" src="./test/cat.jpg">
-                <a>member5</a>
+                <img id="img_member5" class="photo" src="./test/cat.jpg">
+                <a  id="name_member5">member5</a>
             </div>
         </div>
     </div>
