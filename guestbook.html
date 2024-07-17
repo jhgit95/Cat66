@@ -4,13 +4,116 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat66 방명록</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- 방명록 페이지입니다. -->
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
-      /* CSS 작성 구역 */
-    </style>
+      /*배경색을 회색으로 바꿔줌*/
+      body {
+          background-color: #c0c0c0;
+      }
+
+      .mytitle {
+          /*글씨를 중앙으로 가기 위한 코드*/
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          /* 위에 임의로 여백을 80 정도 둠*/
+          padding-top: 80px;
+
+          color: white;
+      }
+
+      /* 플로팅 배경색은 흰색 , margin으로 정중앙으로 오게 만들었고
+              padding으로 여백 다 50씩 밑부분만 20 , 모서리를 흰색 으로 만들었고 5px 살짝 둥글게 만듬
+          */
+      .floatingbox {
+
+          background-color: white;
+          width: 1350px;
+
+          margin: 100px auto 0px auto;
+          padding: 50px 50px 20px 50px;
+
+          box-shadow: 0px 0px 3px 0px white;
+
+          border-radius: 5px;
+
+      }
+
+      /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
+      .form>input {
+          background-color: #c0c0c0;
+      }
+
+      .form2>input {
+          background-color: #c0c0c0;
+          width: 1110px;
+          height: 200px;
+      }
+
+      .formcontainer {
+          display: flex;
+
+      }
+
+      .formcontainer2 {
+          display: flex;
+      }
+
+      /* 안에 있는 박스들도 크기랑 여백 설정*/
+      .form {
+          width: 1000px;
+          padding-left: 10px;
+          margin-right: 20px;
+
+      }
+
+      .form2 {
+          padding-left: 10px;
+          margin-right: 10px;
+      }
+
+      .mybtn {
+
+          padding-top: 20px;
+          margin-left: 1600px;
+      }
+
+      .mybtn>button {
+          background-color: gray;
+          width: 80px;
+          height: 40px;
+      }
+
+      /*버튼 형태를 가로 100 더 줌*/
+      .mybtn2>button {
+          background-color: gray;
+          width: 100px;
+      }
+
+      .card{
+         
+          width: 1350px;
+          margin: 50px auto 10px auto;
+          
+
+
+      }
+
+      .cardsetup{
+         
+          
+          box-shadow: 0px 0px 3px 0px black;
+
+          border-radius: 5px;
+      }
+  </style>
+
 
     <script type="module">
       // Firebase SDK 라이브러리 가져오기
@@ -107,6 +210,103 @@
     <h3>cat66의 방명록 페이지 입니다.</h3>
     <a href="index.html">페이지 이동 테스트 / 메인으로 </a>
 
+    <div class="mybtn">
+      <button type="button" class="btn btn-secondary">Home</button>
+  </div>
+
+  <div class="mytitle">
+      <h1>
+          <캣66 방명록>
+      </h1>
+  </div>
+  <div class="floatingbox">
+
+      <div class="formcontainer">
+          <div class="name">
+              <type>이름 </type>
+          </div>
+          <div class="form">
+              <input type="email" class="form-control" id="floatingInput" placeholder="">
+              <label for="floatingInput"></label>
+          </div>
+          <div class="mybtn2">
+              <button type="button" class="btn btn-secondary">등록</button>
+          </div>
+      </div>
+      <div class="formcontainer2">
+          <div class="name2">
+              <type>내용</type>
+          </div>
+          <div class="form2">
+              <input type="email" class="form-control" id="floatingInput" placeholder="">
+              <label for="floatingInput"></label>
+          </div>
+      </div>
+  </div>
+
+
+
+
+      <div class="card">
+          <div class="cardsetup">
+              <div class="row g-0">
+                  <div class="col-md-4">    
+                  </div>
+                  <div class="col-md-8">
+                      <div class="card-body">
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                              additional content. This content is a little bit longer.</p>
+                          
+                      </div>
+                  </div>
+              </div>
+
+              <div class="cardsetup1">
+                  <div class="row g-0">
+                      <div class="col-md-4">    
+                      </div>
+                      <div class="col-md-8">
+                          <div class="card-body">
+                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                  additional content. This content is a little bit longer.</p>
+                              
+                          </div>
+                      </div>
+                  </div>
+                  <div class="cardsetup2">
+                      <div class="row g-0">
+                          <div class="col-md-4">
+                              <h5 class="card-title">이름</h5>    
+                          </div>
+                          <div class="col-md-8">
+                              <div class="card-body">
+                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                      additional content. This content is a little bit longer.</p>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="cardsetup3">
+                          <div class="row g-0">
+                              <div class="col-md-4">    
+                              </div>
+                              <div class="col-md-8">
+                                  <div class="card-body">
+                                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                          additional content. This content is a little bit longer.</p>
+                                      
+                                  </div>
+                              </div>
+                          </div>
+          </div>
+      
+
+  </div>
+
+
+
+
+
     <!-- test_html은 기능 작동을 확인하기 위해 작성된 임시 코드입니다. 추후 삭제 예정  -->
     <!-- <div class="test_html">
       <div class="main_title">
@@ -135,5 +335,8 @@
         </div>
       </div>
     </div> -->
+
+
+
   </body>
 </html>
