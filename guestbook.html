@@ -17,97 +17,89 @@
     <style>
       /*배경색을 회색으로 바꿔줌*/
       body {
-          background-color: #c0c0c0;
+        background-color: #c0c0c0;
       }
 
       .mytitle {
-          /*글씨를 중앙으로 가기 위한 코드*/
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        /*글씨를 중앙으로 가기 위한 코드*/
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-          /* 위에 임의로 여백을 80 정도 둠*/
-          padding-top: 80px;
+        /* 위에 임의로 여백을 80 정도 둠*/
+        padding-top: 80px;
 
-          color: white;
+        color: white;
       }
 
       /* 플로팅 배경색은 흰색 , margin으로 정중앙으로 오게 만들었고
               padding으로 여백 다 50씩 밑부분만 20 , 모서리를 흰색 으로 만들었고 5px 살짝 둥글게 만듬
           */
       .floatingbox {
+        background-color: white;
+        width: 1350px;
 
-          background-color: white;
-          width: 1350px;
+        margin: 100px auto 0px auto;
+        padding: 50px 50px 20px 50px;
 
-          margin: 100px auto 0px auto;
-          padding: 50px 50px 20px 50px;
+        box-shadow: 0px 0px 3px 0px white;
 
-          box-shadow: 0px 0px 3px 0px white;
-
-          border-radius: 5px;
-
+        border-radius: 5px;
       }
 
       /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
-      .form>input {
-          background-color: #c0c0c0;
+      .form > input {
+        background-color: #c0c0c0;
       }
 
-      .form2>input {
-          background-color: #c0c0c0;
-          width: 1110px;
-          height: 200px;
+      .form2 > input {
+        background-color: #c0c0c0;
+        width: 1110px;
+        height: 200px;
       }
 
       .formcontainer {
-          display: flex;
-
+        display: flex;
       }
 
       .formcontainer2 {
-          display: flex;
+        display: flex;
       }
 
       /* 안에 있는 박스들도 크기랑 여백 설정*/
       .form {
-          width: 1000px;
-          padding-left: 10px;
-          margin-right: 20px;
-
+        width: 1000px;
+        padding-left: 10px;
+        margin-right: 20px;
       }
 
       .form2 {
-          padding-left: 10px;
-          margin-right: 10px;
+        padding-left: 10px;
+        margin-right: 10px;
       }
 
       .mybtn {
-
-          padding-top: 20px;
-          margin-left: 1600px;
+        padding-top: 20px;
+        margin-left: 1600px;
       }
 
-      .mybtn>button {
-          background-color: gray;
-          width: 80px;
-          height: 40px;
+      .mybtn > button {
+        background-color: gray;
+        width: 80px;
+        height: 40px;
       }
 
       /*버튼 형태를 가로 100 더 줌*/
-      .mybtn2>button {
-          background-color: gray;
-          width: 100px;
+      .mybtn2 > button {
+        background-color: gray;
+        width: 100px;
       }
 
       .allcard {
+        width: 1350px;
 
-
-          width: 1350px;
-
-          margin: 100px auto 150px auto;
+        margin: 100px auto 150px auto;
       }
-
 
       /*  한 칸을 만들어서 그 칸으로 세로로 나눌려고 했는데 잘안됨 그래서 칸2개로 나눠서 겹쳤음
 
@@ -116,48 +108,45 @@
           
           flex1으로 border-raidus 할려고 했는데 적용이 안돼서 card 1,2에다 따로 적용
       */
-      .card1{
-          border-radius: 3px;
-          width: 200px;
-          background-color: white;
-          box-shadow: 10px 0px 0px 0px #c0c0c0;
+      .card1 {
+        border-radius: 3px;
+        width: 200px;
+        background-color: white;
+        box-shadow: 10px 0px 0px 0px #c0c0c0;
 
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 
-          text-align: center;
-          
-
+        text-align: center;
       }
       .card2 {
-          
-          width: 1200px;
-          height: 70px;
-          background-color: white;
-          border-radius: 3px;
-          margin-left: 2px;
-
-      }
-   
-      .flex1{
-          display: flex;
-      }
-      .flex2{
-          margin-top: 10px;
-          display: flex;
+        width: 1200px;
+        height: 70px;
+        background-color: white;
+        border-radius: 3px;
+        margin-left: 2px;
       }
 
-      .flex3{
-          margin-top: 10px;
-          display: flex;
+      .flex1 {
+        margin-top: 10px;
+        display: flex;
+      }
+      .flex2 {
+        margin-top: 10px;
+        display: flex;
       }
 
-      .flex4{
-          margin-top: 10px;
-          display: flex;
+      .flex3 {
+        margin-top: 10px;
+        display: flex;
       }
-  </style>
+
+      .flex4 {
+        margin-top: 10px;
+        display: flex;
+      }
+    </style>
 
     <script type="module">
       // Firebase SDK 라이브러리 가져오기
@@ -213,9 +202,10 @@
         window.location.reload();
       });
 
-      // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능. 현재는 임시로 2개만 가져옵니다.
+      // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능.
+      let n = 5;
       const guest_book = await getDocs(
-        query(collection(db, "guest_book"), orderBy("time", "desc"), limit(2))
+        query(collection(db, "guest_book"), orderBy("time", "desc"), limit(n))
       );
       guest_book.forEach((doc) => {
         const data = doc.data();
@@ -230,22 +220,27 @@
         let minutes = ("0" + day.getMinutes()).slice(-2);
         let seconds = ("0" + day.getSeconds()).slice(-2);
 
-        let writed_time =
-          year +
-          "-" +
-          month +
-          "-" +
-          days +
-          " " +
-          hours +
-          ":" +
-          minutes +
-          ":" +
-          seconds;
+        let written_time =
+          // year +
+          // "-" +
+          month + "-" + days + " " + hours + ":" + minutes + ":" + seconds;
 
         //콘솔창에서 데이터 확인 가능
         console.log("guest_book 데이터 == ", data);
-        console.log("time == ", writed_time);
+        console.log("time == ", written_time);
+
+        // 방명록 댓글 html
+        let comment_html = `
+        <div class="flex1">
+        <div class="card1">
+          <div class="card-body">${data.name} <div class"date">(${written_time})</div></div>
+        </div>
+        <div class="card2">
+          <div class="card-body">${data.content}</div>
+        </div>
+      </div>`;
+
+        $(`#allcard_id`).append(comment_html);
       });
     </script>
   </head>
@@ -297,63 +292,43 @@
       </div>
     </div>
 
-    <div class="allcard">
-
-      <div class="flex1">
-          <div class="card1">
-              <div class="card-body">
-                  Name
-              </div>
-          </div>
-          <div class="card2">
-              <div class="card-body">
-                  코멘트 내용
-              </div>
-          </div>
+    <div class="allcard" id="allcard_id">
+      <!-- <div class="flex1">
+        <div class="card1">
+          <div class="card-body">Name</div>
+        </div>
+        <div class="card2">
+          <div class="card-body">코멘트 내용</div>
+        </div>
       </div>
 
       <div class="flex2">
-          <div class="card1">
-              <div class="card-body">
-                  Name
-              </div>
-          </div>
-          <div class="card2">
-              <div class="card-body">
-                  코멘트 내용
-              </div>
-          </div>
+        <div class="card1">
+          <div class="card-body">Name</div>
+        </div>
+        <div class="card2">
+          <div class="card-body">코멘트 내용</div>
+        </div>
       </div>
 
       <div class="flex3">
-          <div class="card1">
-              <div class="card-body">
-                  Name
-              </div>
-          </div>
-          <div class="card2">
-              <div class="card-body">
-                  코멘트 내용
-              </div>
-          </div>
+        <div class="card1">
+          <div class="card-body">Name</div>
+        </div>
+        <div class="card2">
+          <div class="card-body">코멘트 내용</div>
+        </div>
       </div>
 
       <div class="flex4">
-          <div class="card1">
-              <div class="card-body">
-                  Name
-              </div>
-          </div>
-          <div class="card2">
-              <div class="card-body">
-                  코멘트 내용
-              </div>
-          </div>
-      </div>
-
-
-  </div>
-
+        <div class="card1">
+          <div class="card-body">Name</div>
+        </div>
+        <div class="card2">
+          <div class="card-body">코멘트 내용</div>
+        </div>
+      </div> -->
+    </div>
 
     <!-- test_html은 기능 작동을 확인하기 위해 작성된 임시 코드입니다. 추후 삭제 예정  -->
     <!-- <div class="test_html">
