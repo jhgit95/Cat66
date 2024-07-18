@@ -12,10 +12,14 @@
     />
     <!-- 방명록 페이지입니다. -->
     <!-- 구글폰트 -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
       rel="stylesheet"
     />
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -32,19 +36,71 @@
       background-color: rgb(255, 247, 236);
 
       background-image: url('https://img.freepik.com/free-vector/set-vector-cute-cartoonish-cats-isolated-white-background_8130-951.jpg?ga=GA1.1.1026332824.1721297031&semt=sph');
+
+      font-family: "Jua", sans-serif;
+      margin: 0;
     }
 
     .mytitle {
-      /*글씨를 중앙으로 가기 위한 코드*/
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+      width: 400px;
+      height: 100px;
+      /* height: fit-content; */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        /* padding: 20px; */
+        margin-bottom: 20px;
 
       /* 위에 임의로 여백을 80 정도 둠*/
-      padding-top: 30px;
+      /* padding-top: 30px; */
 
       color: black;
+
+      border: 7px solid rgb(235, 179, 134);
+      border-radius: 30px;
+
+      background-color: rgb(255, 242, 231);
     }
+    
+    .mytitle:hover {
+        background-color: rgb(235, 179, 134);
+      }
+
+    .mytitle > div {
+        margin: 10px auto;
+        font-size: 80px;
+        border-radius: 30px;
+        color: rgb(69, 59, 53); 
+
+        cursor: pointer;
+        transition: background-color 0.2s ease 0.1s;
+
+        /* width: 400px; */
+        /* height: 100px; */
+
+        /* border: 7px solid rgb(235, 179, 134);
+        background-color: rgb(255, 242, 231); */
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .visitBtn {
+        margin-top: 20px;
+        padding: 10px;
+
+        border-radius: 10px;
+        background-color: rgb(253, 218, 190);
+        color: rgb(4, 4, 4);
+
+        cursor: pointer;
+      }
 
 
     /* 플로팅 배경색은 흰색 , margin으로 정중앙으로 오게 만들었고
@@ -53,15 +109,16 @@
 
           */
     .floatingbox {
-      background-color: rgb(255, 237, 191);
-      width: 500px;
+      border: 5px solid rgb(235, 179, 134);
+      background-color: rgb(255, 242, 231);
+      width: fit-content;
 
       margin: 100px auto 0px auto;
       padding: 50px 50px 20px 50px;
 
       box-shadow: 0px 0px 3px 0px white;
 
-      border-radius: 5px;
+      border-radius: 20px;
     }
 
     .name9 {
@@ -71,21 +128,23 @@
 
     /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
     .form>input {
-      background-color: #c0c0c0;
+      background-color: rgb(255, 251, 249);
     }
 
     .form2>input {
-      background-color: #c0c0c0;
-      width: 330px;
+      background-color: rgb(255, 251, 249);
+      width: 410px;
       height: 80px;
     }
 
     .formcontainer {
       display: flex;
+      justify-content: flex-start;
     }
 
     .formcontainer2 {
       display: flex;
+      justify-content: flex-start;
     }
 
     /* 안에 있는 박스들도 크기랑 여백 설정*/
@@ -105,13 +164,11 @@
       display: flex;
       justify-content: flex-end;
       margin-right: 20px;
-
-
     }
 
     /* 폰트 11, 글자가 넘쳐서 한줄로 할려면 nowrap을 써야했음*/
     .mybtn>button {
-      background-color: gray;
+      background-color: rgb(253, 218, 190);
       width: 80px;
       height: 40px;
       font-size: 11px;
@@ -121,7 +178,8 @@
 
     /*버튼 형태를 가로 100 더 줌*/
     .mybtn2>button {
-      background-color: gray;
+      background-color: rgb(253, 218, 190);
+      color: rgb(69, 59, 53); 
       width: 100px;
     }
 
@@ -152,7 +210,7 @@
       flex-direction: row;
       align-items: center;
       text-align: center;
-      border-right: 5px solid #c0c0c0;
+      /* border-right: 5px solid #c0c0c0; */
     }
 
 
@@ -189,9 +247,10 @@
     }
 
     .card-body {
-      background-color: #dcdcdc;
+      background-color: rgb(255, 242, 231);
       white-space: nowrap;
 
+      border-radius: 10px;
     }
     </style>
 
@@ -328,18 +387,28 @@
         window.location.assign("detail.html");
       });
     </script>
+
+    <script>
+      function navigate(url) {
+        // 방명록으로 이동하는 용도
+        window.location.assign(url);
+      }
+    </script>
   </head>
 
   <body>
     <div class="mybtn">
-      <button type="button" class="btn btn-secondary" id="team_details_btn">
+      <div class="visitBtn">
         팀 소개
-      </button>
+      </div>
     </div>
 
-    <div class="mytitle">
-      <h1><캣66 방명록></h1>
+    <div style="display: flex; justify-content: center;">
+      <div class="mytitle">
+        <div onclick="navigate('index.html')"><캣66></div>
+      </div>
     </div>
+
     <div class="floatingbox">
       <div class="formcontainer">
         <div class="name9">
