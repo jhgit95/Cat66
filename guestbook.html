@@ -282,7 +282,7 @@
 
         // 정규표현식 : 이름 2~6글자, 내용 2글자 이상
         const name_regex = /^.{2,6}$/;
-        const content_regex = /^.{2,}$/;
+        const content_regex = /^.{2,30}$/;
         if (!name_regex.test(name)) {
           return Toast.fire({
             icon: "error",
@@ -292,7 +292,7 @@
         if (!content_regex.test(content)) {
           return Toast.fire({
             icon: "error",
-            title: "2글자 이상 입력해 주세요.",
+            title: "2~30글자 입력해 주세요!",
           });
         }
         if (name_regex.test(name) && content_regex.test(content)) {
@@ -331,10 +331,6 @@
           // year +
           // "-" +
           month + "-" + days + " " + hours + ":" + minutes + ":" + seconds;
-
-        //콘솔창에서 데이터 확인 가능
-        console.log("guest_book 데이터 == ", data);
-        console.log("time == ", written_time);
 
         // 방명록 댓글 html
         let comment_html = `
@@ -404,7 +400,7 @@
             type="email"
             class="form-control"
             id="content_input_box"
-            placeholder="2글자 이상 입력해 주세요!"
+            placeholder="2~30글자 입력해 주세요!"
           />
           <label for="floatingInput"></label>
         </div>
