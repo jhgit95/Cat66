@@ -135,7 +135,8 @@
             object-fit: cover;
         }
 
-        /* modal */
+        /* modal 구역 */
+
         .modal {
             position: fixed;
             display: none;
@@ -178,8 +179,8 @@
             color: #aaa;
         }
 
-        /* modal 창 열려 있을 때 뒷 배경의 스크롤 막기(고정)*/
         .no-scroll {
+          /* modal 창 열려 있을 때 뒷 배경의 스크롤 막기(고정)*/
             overflow: hidden;
         }
 
@@ -209,6 +210,16 @@
             align-items: start;
             justify-content: start;
         }
+
+        /* 텍스트 왼쪽 정렬 */
+        .profile > div > p {
+            text-align: left;
+            font-size: 18px;
+        }
+        .profile > div > p > span {
+            text-align: left; 
+        }
+
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -242,6 +253,8 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
+      // member 별 데이터를 전역변수로 저장
+      const membersData = [];
 
         // 팀 소개 데이터를 가져오고 화면에 띄우는 함수 (나영)
         async function loadTeam() {
@@ -290,16 +303,15 @@
             }
         };
         
-        // member 이름, 사진 로드 함수 (지은)
+        // member 전체 데이터 로드, 사진과 이름 화면에 띄우기
         async function loadMembers() {
             const members = await getDocs(collection(db, 'member'));
                 let index = 1;
                 members.forEach((member) => {
-                    const memberPhoto = member.data().photo;
-                    const memberName = member.data().name;
-                    
-                    document.getElementById(`img_member${index}`).src = memberPhoto;
-                    document.getElementById(`name_member${index++}`).textContent = memberName;
+                    membersData.push(member.data());    // 전역변수에 데이터 저장
+
+                    document.getElementById(`img_member${index}`).src = member.data().photo;
+                    document.getElementById(`name_member${index++}`).textContent = member.data().name;
                 });
         }
 
@@ -313,34 +325,43 @@
         window.onload = initialize;
 
 
-        
-        // modal 띄우기 (img 클릭 시)
+        // modal
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.querySelector('.modal');
             const modalClose = document.querySelector('.modal_close');
             const photos = document.querySelectorAll('.photo');
 
-        photos.forEach((photo) => {
-          photo.addEventListener("click", () => {
-            modal.style.display = "flex"; // 모달 창 보이기
-            document.body.classList.add("no-scroll"); // 뒷 배경 고정
-          });
+            // 사진 클릭 시 modal 띄우기
+            photos.forEach((photo, index) => {
+                photo.addEventListener('click', () => {
+                    // membersData와 member별 태그 매칭
+                    const profile = membersData[index];
+                    document.getElementById('profile_img').src = profile.photo;
+                    document.getElementById('profile_name').textContent = "["+profile.name+"]";
+                    document.getElementById('profile_mbti').textContent = profile.mbti;
+                    document.getElementById('profile_blog').textContent = profile.blog;
+                    document.getElementById('profile_strengths').textContent = profile.strengths;
+
+                    modal.style.display = 'flex';   // 모달 창 보이기
+                    document.body.classList.add('no-scroll'); // 뒷 배경 고정
+                });
+            });
+
+            // x 클릭 시 modal 닫기
+            modalClose.addEventListener('click', () => {
+                modal.style.display = 'none'; // 모달 창 감추기
+                document.body.classList.remove('no-scroll'); // 뒷 배경 고정 해제
+            });
+
+            // modal 외부 클릭 시 modal 닫기
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.classList.remove('no-scroll'); 
+                }
+            });
         });
 
-        // x 클릭 시 modal 닫기
-        modalClose.addEventListener("click", () => {
-          modal.style.display = "none"; // 모달 창 감추기
-          document.body.classList.remove("no-scroll"); // 뒷 배경 고정 해제
-        });
-
-        // modal 외부 클릭 시 modal 닫기
-        window.addEventListener("click", (event) => {
-          if (event.target === modal) {
-            modal.style.display = "none";
-            document.body.classList.remove("no-scroll");
-          }
-        });
-      });
     </script>
     <script>
       function navigate(url) {
@@ -420,16 +441,16 @@
         <div class="modal_body">
             <span class="modal_close">&times;</span>
             <div class="profile">
-                <img id="profile_img" src="./test/cat.jpg">
+                <img id="profile_img" src="">
                 <div>
-                    <h2 id="profile_name">이름</h2>
-                    <p id="profile_blog">블로그 주소</p>
-                    <p id="profile_mbti">MBTI</p>
-                    <p id="profile_strengths">자신의 장점</p>
+                    <h1 id="profile_name"></h2>
+                    <p><b>MBTI</b><br>: <span id="profile_mbti"></span></p>
+                    <p><b>Blog</b><br>: <span id="profile_blog"></span></p>
+                    <p><b>자신의 장점</b><br>: <span id="profile_strengths"></span></p>
                 </div>
             </div>
         </div>
     </div>
-    
+
   </body>
 </html>
