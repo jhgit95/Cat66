@@ -10,64 +10,85 @@
 
       body {
         font-family: "Jua", sans-serif;
-        background-color: rgb(255, 247, 236);      
+        background-color: white;
+        margin: 0;
+      }
+
+      .back {
+        width: 100%;
+        background-image: url('./img/main_cat.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        margin: 0 0 0 0;
+        padding-bottom: 30px;
       }
 
       .bannerBox {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        padding: 20px 20px 20px 20px;
+        margin-bottom: 20px;
       }
 
-      .bannerBox > div {
-        margin: 20px auto;
-        font-size: 150px;
-        border-radius: 80px;
+      .bannerBox > p {
+        margin: 10px auto 0px auto;
+        font-size: 100px;
+        border-radius: 50px;
+        color :  white; 
+        text-shadow: 2px 2px 2px grey;
 
         cursor: pointer;
         transition: background-color 0.2s ease 0.1s;
       }
 
-      .bannerBox > div:hover {
-        background-color: rgb(255, 237, 191);
+      .bannerBox > p:hover {
+        background-color: rgb(180, 179, 179);
       }
 
       .bannerBox > span {
-        font-size: 50px;
+        font-size: 40px;
+        color : rgb(77, 76, 76);
       }
 
       .teamAbout {
-        margin: 30px auto;
-        padding: 10px;
+        margin: 10px auto 30px auto;
+        padding: 20px 20px 20px 20px;
 
-        width: 90%;
+        width: 80%;
 
         border: none;
         border-radius: 20px;
 
-        background-color: rgb(255, 237, 191);
+        background-color: rgba( 255, 255, 255, 0.8 );
+        
+        font-size: 20px;
       }
 
       .flexBox {
         display: flex;
         justify-content: flex-start;
+        background-color: transparent;
       }
 
       .flexBox > div {
         width: 50%;
-
-        padding: 15px;
+        padding: 10px 20px 10px 20px;
       }
 
       .visitBtnWrp {
         display: flex;
         justify-content: flex-end;
+        padding-right: 30px;
+        padding-top: 60px;
       }
 
       .visitBtnWrp > div {
         padding: 10px;
 
-        background-color: rgb(219, 219, 219);
+        background-color: white;
         color: rgb(4, 4, 4);
         border-radius: 10px;
 
@@ -77,10 +98,9 @@
       /* 팀원 구역 */
 
       .member_list {
-            background-color: #DCDCDC;
-
-            width: 90%;
-            border-radius: 20px;
+        background-color: rgb(226, 226, 226);
+        width: 80%;
+        border-radius: 20px;
 
             align-self: center;
             margin: 30px auto 30px auto;
@@ -89,7 +109,6 @@
 
         .member_line {
             padding: 20px 0px 20px 0px;
-
             overflow: auto;
 
             display: flex;
@@ -115,7 +134,6 @@
 
             padding: 10px 10px 10px 10px;
             border-radius: 20px;
-            /* border: 1px solid gray;*/
 
             display: flex;
             flex-direction: column;
@@ -284,7 +302,7 @@
             teamTimeContainer.innerHTML = ""; // 기존 내용을 초기화
             teamData.teamTime.forEach((time, index) => {
               const timeElement = document.createElement("span");
-              timeElement.innerText = `${index + 1}) ${time}`;
+              timeElement.innerText = `${time}`;
               teamTimeContainer.appendChild(timeElement);
               teamTimeContainer.appendChild(document.createElement("br"));
             });
@@ -372,9 +390,10 @@
   </head>
 
   <body>
+    <div class="back">
     <div class="bannerBox">
-      <div onclick="navigate('index.html')"><캣 66></div>
-      <span>JAVA_6기 팀66</span>
+      <p onclick="navigate('index.html')"><캣 66></p>
+      <span>Team66</span>
     </div>
 
     <!-- 나영님 / 팀 내용 구역 -->
@@ -382,33 +401,34 @@
       <div class="flexBox">
         <div>
           <div>
-            <b>팀 소개</b><br />
+            <b>[팀 소개]</b><br />
             팀명 : <span id="teamName"></span><br />
             팀 소개 : <span id="teamIntroduction"></span><br />
           </div>
           <br />
           <div>
-            <b>프로젝트 목표</b><br />
+            <b>[프로젝트 목표]</b><br />
             [<span id="teamProject"></span>]
             <span id="teamGoal"></span>
           </div>
           <br />
           <div>
-            <b>팀 약속</b><br />
+            <b>[팀 약속]</b><br />
             <span id="teamTimeContainer"></span>
           </div>
-          <br />
         </div>
         <div>
-          <b>팀 규칙</b><br />
+          <b>[팀 규칙]</b><br />
           <span id="teamRuleContainer"></span>
+          <div class="visitBtnWrp" onclick="navigate('guestbook.html')">
+            <div>방명록</div>
+          </div>
         </div>
-      </div>
-      <div class="visitBtnWrp" onclick="navigate('guestbook.html')">
-        <div>방명록</div>
-      </div>
-    </div>
 
+      </div>
+
+    </div>
+  </div>
     <!-- 지은님 / 팀원 구역 -->
     <div class="member_list">
         <div class="member_line">
