@@ -1,63 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat66 상세페이지</title>
 
     <style>
+      /* 팀 소개 구역 */
 
-        /* 팀 소개 구역 */
+      body {
+        font-family: "Jua", sans-serif;
+        background-color: rgb(255, 247, 236);      
+      }
 
-        .bannerBox {
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-        }
+      .bannerBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-        .teamAbout {
-            margin: 30px auto;
-            padding: 30px 10px;
+      .bannerBox > div {
+        margin: 20px auto;
+        font-size: 150px;
+        border-radius: 80px;
 
-            width: 90%;
+        cursor: pointer;
+        transition: background-color 0.2s ease 0.1s;
+      }
 
-            border: none;
-            border-radius: 20px;
+      .bannerBox > div:hover {
+        background-color: rgb(255, 237, 191);
+      }
 
-            background-color: rgb(255, 237, 191);
-        }
+      .bannerBox > span {
+        font-size: 50px;
+      }
 
-        .flexBox {
-            display: flex;
-            justify-content: flex-start;
-        }
+      .teamAbout {
+        margin: 30px auto;
+        padding: 10px;
 
-        .flexBox > div {
-            width: 50%;
+        width: 90%;
 
-            padding: 15px;
-        }
+        border: none;
+        border-radius: 20px;
 
-        .visitBtnWrp {
-            display: flex; 
-            justify-content: flex-end;
-        }
+        background-color: rgb(255, 237, 191);
+      }
 
-        .visitBtnWrp > div {
-            width: 50px;
-            padding: 10px;
+      .flexBox {
+        display: flex;
+        justify-content: flex-start;
+      }
 
-            background-color: rgb(219, 219, 219); 
-            color: rgb(4, 4, 4);
-            border-radius: 10px;
+      .flexBox > div {
+        width: 50%;
 
-            cursor: pointer;
-        }
-        
-        /* 팀원 구역 */
-        
-        .member_list {
+        padding: 15px;
+      }
+
+      .visitBtnWrp {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .visitBtnWrp > div {
+        padding: 10px;
+
+        background-color: rgb(219, 219, 219);
+        color: rgb(4, 4, 4);
+        border-radius: 10px;
+
+        cursor: pointer;
+      }
+
+      /* 팀원 구역 */
+
+      .member_list {
             background-color: #DCDCDC;
 
             width: 90%;
@@ -153,9 +172,9 @@
         .modal_close {
             position: absolute;
             top: 10px;
-            right: 10px;
+            right: 20px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 40px;
             color: #aaa;
         }
 
@@ -190,30 +209,38 @@
             align-items: start;
             justify-content: start;
         }
-
     </style>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+
     <script type="module">
+      // Firebase SDK 라이브러리 가져오기
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import {
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-        // Firebase SDK 라이브러리 가져오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      // Firebase 구성 정보 설정
+      const firebaseConfig = {
+        apiKey: "AIzaSyAio8CbaweQ5YCb0-Zx3STpG8gP6sVyp0E",
+        authDomain: "cat66-d3757.firebaseapp.com",
+        projectId: "cat66-d3757",
+        storageBucket: "cat66-d3757.appspot.com",
+        messagingSenderId: "238522357447",
+        appId: "1:238522357447:web:2d3c6a05f1402496da50e2",
+      };
 
-        // Firebase 구성 정보 설정
-        const firebaseConfig = {
-            apiKey: "AIzaSyAio8CbaweQ5YCb0-Zx3STpG8gP6sVyp0E",
-            authDomain: "cat66-d3757.firebaseapp.com",
-            projectId: "cat66-d3757",
-            storageBucket: "cat66-d3757.appspot.com",
-            messagingSenderId: "238522357447",
-            appId: "1:238522357447:web:2d3c6a05f1402496da50e2"
-        };
-
-        // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+      // Firebase 인스턴스 초기화
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
 
         // 팀 소개 데이터를 가져오고 화면에 띄우는 함수 (나영)
@@ -239,14 +266,15 @@
                     // document.getElementById('teamTime').innerText = teamData.teamTime;
                     // document.getElementById('teamRule').innerText = teamData.teamRule;
 
-                    const teamTimeContainer = document.getElementById('teamTimeContainer');
-                    teamTimeContainer.innerHTML = ''; // 기존 내용을 초기화
-                    teamData.teamTime.forEach((time, index) => {
-                        const timeElement = document.createElement('span');
-                        timeElement.innerText = `${index + 1}) ${time}`;
-                        teamTimeContainer.appendChild(timeElement);
-                        teamTimeContainer.appendChild(document.createElement('br')); 
-                    });
+            const teamTimeContainer =
+              document.getElementById("teamTimeContainer");
+            teamTimeContainer.innerHTML = ""; // 기존 내용을 초기화
+            teamData.teamTime.forEach((time, index) => {
+              const timeElement = document.createElement("span");
+              timeElement.innerText = `${index + 1}) ${time}`;
+              teamTimeContainer.appendChild(timeElement);
+              teamTimeContainer.appendChild(document.createElement("br"));
+            });
 
                     const teamRuleContainer = document.getElementById('teamRuleContainer');
                     teamRuleContainer.innerHTML = ''; // 기존 내용을 초기화
@@ -292,75 +320,73 @@
             const modalClose = document.querySelector('.modal_close');
             const photos = document.querySelectorAll('.photo');
 
-            photos.forEach(photo => {
-                photo.addEventListener('click', () => {
-                    modal.style.display = 'flex';   // 모달 창 보이기
-                    document.body.classList.add('no-scroll'); // 뒷 배경 고정
-                });
-            });
-
-            // x 클릭 시 modal 닫기
-            modalClose.addEventListener('click', () => {
-                modal.style.display = 'none'; // 모달 창 감추기
-                document.body.classList.remove('no-scroll'); // 뒷 배경 고정 해제
-            });
-
-            // modal 외부 클릭 시 modal 닫기
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.classList.remove('no-scroll'); 
-                }
-            });
+        photos.forEach((photo) => {
+          photo.addEventListener("click", () => {
+            modal.style.display = "flex"; // 모달 창 보이기
+            document.body.classList.add("no-scroll"); // 뒷 배경 고정
+          });
         });
 
+        // x 클릭 시 modal 닫기
+        modalClose.addEventListener("click", () => {
+          modal.style.display = "none"; // 모달 창 감추기
+          document.body.classList.remove("no-scroll"); // 뒷 배경 고정 해제
+        });
+
+        // modal 외부 클릭 시 modal 닫기
+        window.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            document.body.classList.remove("no-scroll");
+          }
+        });
+      });
     </script>
     <script>
-        function navigate(url) { // 방명록으로 이동하는 용도
-            window.location.assign(url);
-        }
+      function navigate(url) {
+        // 방명록으로 이동하는 용도
+        window.location.assign(url);
+      }
     </script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="bannerBox">
-        <div style="margin: 20px auto;">캣 66 프로젝트</div>
-        <div>JAVA_6기 팀66</div>
+      <div onclick="navigate('index.html')"><캣 66></div>
+      <span>JAVA_6기 팀66</span>
     </div>
 
     <!-- 나영님 / 팀 내용 구역 -->
     <div class="teamAbout">
-        <div class="flexBox">
-            <div>
-                <div>
-                    <b>팀 소개</b><br/>
-                    팀명 : <span id="teamName"></span><br/>
-                    팀 소개 : <span id="teamIntroduction"></span><br/>
-
-                </div><br/>
-                <div>
-                    <b>프로젝트 목표</b><br/>
-                    [<span id="teamProject"></span>]
-                    <span id="teamGoal"></span>
-                </div><br/>
-                <div>
-                    <b>팀 약속</b><br/>
-                    <span id="teamTimeContainer"></span>
-                </div><br/>
-            </div>
-            <div>
-                <b>팀 규칙</b><br/>
-                <span id="teamRuleContainer"></span>
-            </div>
+      <div class="flexBox">
+        <div>
+          <div>
+            <b>팀 소개</b><br />
+            팀명 : <span id="teamName"></span><br />
+            팀 소개 : <span id="teamIntroduction"></span><br />
+          </div>
+          <br />
+          <div>
+            <b>프로젝트 목표</b><br />
+            [<span id="teamProject"></span>]
+            <span id="teamGoal"></span>
+          </div>
+          <br />
+          <div>
+            <b>팀 약속</b><br />
+            <span id="teamTimeContainer"></span>
+          </div>
+          <br />
         </div>
-        <div class="visitBtnWrp" onclick="navigate('guestbook.html')">
-            <div>방명록</div>
+        <div>
+          <b>팀 규칙</b><br />
+          <span id="teamRuleContainer"></span>
         </div>
-
+      </div>
+      <div class="visitBtnWrp" onclick="navigate('guestbook.html')">
+        <div>방명록</div>
+      </div>
     </div>
-
-
 
     <!-- 지은님 / 팀원 구역 -->
     <div class="member_list">
@@ -404,7 +430,6 @@
             </div>
         </div>
     </div>
-
-</body>
-
+    
+  </body>
 </html>
