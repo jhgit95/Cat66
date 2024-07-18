@@ -32,20 +32,19 @@
 
     <style>
       /*배경색을 회색으로 바꿔줌*/
-    body {
-      background-color: rgb(255, 247, 236);
+      body {
+        background-color: rgb(255, 247, 236);
 
-      background-image: url('https://img.freepik.com/free-vector/set-vector-cute-cartoonish-cats-isolated-white-background_8130-951.jpg?ga=GA1.1.1026332824.1721297031&semt=sph');
+        background-image: url("https://img.freepik.com/free-vector/set-vector-cute-cartoonish-cats-isolated-white-background_8130-951.jpg?ga=GA1.1.1026332824.1721297031&semt=sph");
 
-      font-family: "Jua", sans-serif;
-      margin: 0;
-    }
+        font-family: "Jua", sans-serif;
+        margin: 0;
+      }
 
-    .mytitle {
-
-      width: 400px;
-      height: 100px;
-      /* height: fit-content; */
+      .mytitle {
+        width: 400px;
+        height: 100px;
+        /* height: fit-content; */
 
         display: flex;
         flex-direction: column;
@@ -55,35 +54,26 @@
         /* padding: 20px; */
         margin-bottom: 20px;
 
-      /* 위에 임의로 여백을 80 정도 둠*/
-      /* padding-top: 30px; */
+        color: black;
 
-      color: black;
+        border: 7px solid rgb(235, 179, 134);
+        border-radius: 30px;
 
-      border: 7px solid rgb(235, 179, 134);
-      border-radius: 30px;
+        background-color: rgb(255, 242, 231);
+      }
 
-      background-color: rgb(255, 242, 231);
-    }
-    
-    .mytitle:hover {
+      .mytitle:hover {
         background-color: rgb(235, 179, 134);
       }
 
-    .mytitle > div {
+      .mytitle > div {
         margin: 10px auto;
         font-size: 80px;
         border-radius: 30px;
-        color: rgb(69, 59, 53); 
+        color: rgb(69, 59, 53);
 
         cursor: pointer;
         transition: background-color 0.2s ease 0.1s;
-
-        /* width: 400px; */
-        /* height: 100px; */
-
-        /* border: 7px solid rgb(235, 179, 134);
-        background-color: rgb(255, 242, 231); */
 
         display: flex;
         align-items: center;
@@ -102,156 +92,135 @@
         cursor: pointer;
       }
 
+      .floatingbox {
+        border: 5px solid rgb(235, 179, 134);
+        background-color: rgb(255, 242, 231);
+        width: fit-content;
 
-    /* 플로팅 배경색은 흰색 , margin으로 정중앙으로 오게 만들었고
-              padding으로 여백 다 50씩 밑부분만 20 , 모서리를 흰색 으로 만들었고 5px 살짝 둥글게 만듬
-              floatingbox의 width를 90%로 설정하고, max-width를 1350px로 설정하여 화면 크기에 조정하게 만듬
+        margin: 100px auto 0px auto;
+        padding: 50px 50px 20px 50px;
 
-          */
-    .floatingbox {
-      border: 5px solid rgb(235, 179, 134);
-      background-color: rgb(255, 242, 231);
-      width: fit-content;
+        box-shadow: 0px 0px 3px 0px white;
 
-      margin: 100px auto 0px auto;
-      padding: 50px 50px 20px 50px;
+        border-radius: 20px;
+      }
 
-      box-shadow: 0px 0px 3px 0px white;
+      .name9 {
+        padding-right: 20px;
+        white-space: nowrap;
+      }
 
-      border-radius: 20px;
-    }
+      /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
+      .form > input {
+        background-color: rgb(255, 251, 249);
+      }
 
-    .name9 {
-      padding-right: 20px;
-      white-space: nowrap;
-    }
+      .form2 > input {
+        background-color: rgb(255, 251, 249);
+        width: 410px;
+        height: 80px;
+      }
 
-    /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
-    .form>input {
-      background-color: rgb(255, 251, 249);
-    }
+      .formcontainer {
+        display: flex;
+        justify-content: flex-start;
+      }
 
-    .form2>input {
-      background-color: rgb(255, 251, 249);
-      width: 410px;
-      height: 80px;
-    }
+      .formcontainer2 {
+        display: flex;
+        justify-content: flex-start;
+      }
 
-    .formcontainer {
-      display: flex;
-      justify-content: flex-start;
-    }
+      /* 안에 있는 박스들도 크기랑 여백 설정*/
+      .form {
+        width: 300px;
+        padding-left: 10px;
+        margin-right: 20px;
+      }
 
-    .formcontainer2 {
-      display: flex;
-      justify-content: flex-start;
-    }
+      .form2 {
+        padding-left: 10px;
+        margin-right: 10px;
+      }
 
-    /* 안에 있는 박스들도 크기랑 여백 설정*/
-    .form {
-      width: 300px;
-      padding-left: 10px;
-      margin-right: 20px;
-    }
+      /*반응형으로 만들어서 축소화 시켜도 항상 home이 오른쪽 끝에 보임*/
+      .mybtn {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+      }
 
-    .form2 {
-      padding-left: 10px;
-      margin-right: 10px;
-    }
+      /* 폰트 11, 글자가 넘쳐서 한줄로 할려면 nowrap을 써야했음*/
+      .mybtn > button {
+        background-color: rgb(253, 218, 190);
+        width: 80px;
+        height: 40px;
+        font-size: 11px;
+        white-space: nowrap;
+      }
 
-    /*반응형으로 만들어서 축소화 시켜도 항상 home이 오른쪽 끝에 보임*/
-    .mybtn {
-      display: flex;
-      justify-content: flex-end;
-      margin-right: 20px;
-    }
+      /*버튼 형태를 가로 100 더 줌*/
+      .mybtn2 > button {
+        background-color: rgb(253, 218, 190);
+        color: rgb(69, 59, 53);
+        width: 100px;
+      }
 
-    /* 폰트 11, 글자가 넘쳐서 한줄로 할려면 nowrap을 써야했음*/
-    .mybtn>button {
-      background-color: rgb(253, 218, 190);
-      width: 80px;
-      height: 40px;
-      font-size: 11px;
-      white-space: nowrap;
+      .date {
+        font-size: 10px;
+      }
 
-    }
+      .allcard {
+        width: 550px;
 
-    /*버튼 형태를 가로 100 더 줌*/
-    .mybtn2>button {
-      background-color: rgb(253, 218, 190);
-      color: rgb(69, 59, 53); 
-      width: 100px;
-    }
+        margin: 100px auto 150px auto;
+      }
 
-    .date {
-      font-size: 10px;
-    }
+      .card1 {
+        border-radius: 3px;
+        width: 400px;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+      }
 
-    .allcard {
-      width: 550px;
+      .card2 {
+        width: 1200px;
+        height: 70px;
+        background-color: white;
+        border-radius: 3px;
 
-      margin: 100px auto 150px auto;
-    }
+        display: flex;
+      }
 
-    /*  한 칸을 만들어서 그 칸으로 세로로 나눌려고 했는데 잘안됨 그래서 칸2개로 나눠서 겹쳤음
+      .flex1 {
+        margin-top: 10px;
+        display: flex;
+      }
 
-          card1 : 왼쪽 작은 칸, 그림자로 세로선을 표시,글자를 중앙으로 이동함.
-          card2 : 오른쪽 큰 칸, 그림자가 보이게 margin-left:2px 정도 띄움  수직선 효과를 위한 오른쪽 테두리 추가 
-          
-          card1,car2 flex기능을 각각 넣어서 같은 선상을 맞춤
-          
-          flex1으로 border-raidus 할려고 했는데 적용이 안돼서 card 1,2에다 따로 적용
-      */
-    .card1 {
-      border-radius: 3px;
-      width: 400px;
-      background-color: white;   
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      text-align: center;
-      /* border-right: 5px solid #c0c0c0; */
-    }
+      .flex2 {
+        margin-top: 10px;
+        display: flex;
+      }
 
+      .flex3 {
+        margin-top: 10px;
+        display: flex;
+      }
 
-    .card2 {
-      width: 1200px;
-      height: 70px;
-      background-color: white;
-      border-radius: 3px;
-      
-      display: flex;
-      
-      
+      .flex4 {
+        margin-top: 10px;
+        display: flex;
+      }
 
-    }
+      .card-body {
+        background-color: rgb(255, 242, 231);
+        white-space: nowrap;
 
-    .flex1 {
-      margin-top: 10px;
-      display: flex;
-    }
-
-    .flex2 {
-      margin-top: 10px;
-      display: flex;
-    }
-
-    .flex3 {
-      margin-top: 10px;
-      display: flex;
-    }
-
-    .flex4 {
-      margin-top: 10px;
-      display: flex;
-    }
-
-    .card-body {
-      background-color: rgb(255, 242, 231);
-      white-space: nowrap;
-
-      border-radius: 10px;
-    }
+        border-radius: 10px;
+      }
     </style>
 
     <script type="module">
@@ -310,21 +279,23 @@
           content: content,
           time: now,
         };
-        // alret("zz");
-        const regex = /^.{2,}$/;
-        if (!regex.test(name)) {
+
+        // 정규표현식 : 이름 2~6글자, 내용 2글자 이상
+        const name_regex = /^.{2,6}$/;
+        const content_regex = /^.{2,}$/;
+        if (!name_regex.test(name)) {
+          return Toast.fire({
+            icon: "error",
+            title: "2~6글자 입력해 주세요!.",
+          });
+        }
+        if (!content_regex.test(content)) {
           return Toast.fire({
             icon: "error",
             title: "2글자 이상 입력해 주세요.",
           });
         }
-        if (!regex.test(content)) {
-          return Toast.fire({
-            icon: "error",
-            title: "2글자 이상 입력해 주세요.",
-          });
-        }
-        if (regex.test(name) && regex.test(content)) {
+        if (name_regex.test(name) && content_regex.test(content)) {
           Swal.fire(
             "방명록이 작성 됐습니다!",
             "",
@@ -333,11 +304,8 @@
           ).then(function () {
             return window.location.reload();
           });
-          // 실제 파이어베이스에 저장하는 코드
+
           await addDoc(collection(db, "guest_book"), write_content);
-          // alert("작성완료");
-          // 페이지 새로고침
-          // return window.location.reload();
         }
       });
 
@@ -398,12 +366,10 @@
 
   <body>
     <div class="mybtn">
-      <div class="visitBtn">
-        팀 소개
-      </div>
+      <div class="visitBtn">팀 소개</div>
     </div>
 
-    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center">
       <div class="mytitle">
         <div onclick="navigate('index.html')"><캣66></div>
       </div>
@@ -419,7 +385,7 @@
             type="email"
             class="form-control"
             id="name_input_box"
-            placeholder="2글자 이상 입력해 주세요!"
+            placeholder="2~6글자 입력해 주세요!"
           />
           <label for="floatingInput"></label>
         </div>
@@ -482,34 +448,5 @@
         </div>
       </div> -->
     </div>
-
-    <!-- test_html은 기능 작동을 확인하기 위해 작성된 임시 코드입니다. 추후 삭제 예정  -->
-    <!-- <div class="test_html">
-      <div class="main_title">
-        <h3>방명록 기능 테스트</h3>
-      </div>
-
-      <div class="write_area">
-        <div class="write_box">
-          <div class="ww">
-            <label for="name" class="form-label">이 름</label>
-
-            <input type="text" id="name_input_box" placeholder="이름박스" />
-
-            <button class="write_btn" id="write_btn">등록</button>
-          </div>
-          <div class="ww">
-            <label for="content" class="form-label">내 용</label>
-            <input type="text" id="content_input_box" placeholder="내용박스" />
-          </div>
-        </div>
-
-        <div class="comment_area">
-          <div class="comment_box">
-            <h3>방명록이 들어올 영역</h3>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </body>
 </html>
