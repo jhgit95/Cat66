@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +11,40 @@
   <!-- 방명록 페이지입니다. -->
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat66 방명록</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- 방명록 페이지입니다. -->
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- sweetalert2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
+    <style>
+      /*배경색을 회색으로 바꿔줌*/
+      body {
+        background-color: rgb(255, 247, 236);
+        font-family: "Nanum Gothic", sans-serif;
+      }
+>>>>>>> f00c9b4b7d02197e1a1128dfaef449915425c08e
 
   <style>
     /*배경색을 회색으로 바꿔줌*/
@@ -241,9 +276,27 @@
       //알림창
       alert("댓글 작성 완료~");
 
+<<<<<<< HEAD
       // 페이지 새로고침
       window.location.reload();
     });
+=======
+      //토스트 팝업
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center-center",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      // 현재 시간 생성
+      const now = new Date();
+>>>>>>> f00c9b4b7d02197e1a1128dfaef449915425c08e
 
     // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능.
     let n = 5;
@@ -253,6 +306,7 @@
     guest_book.forEach((doc) => {
       const data = doc.data();
 
+<<<<<<< HEAD
       // 타임스템프 시간을 사람 눈에 보기 편하게 바꾸는 기능(yy-mm-dd hh:mm:ss)
       let day = data.time.toDate();
 
@@ -282,6 +336,81 @@
           <div class="card-body">${data.content}</div>
         </div>
       </div>`;
+=======
+        let write_content = {
+          name: name,
+          content: content,
+          time: now,
+        };
+        // alret("zz");
+        const regex = /^.{2,}$/;
+        if (!regex.test(name)) {
+          return Toast.fire({
+            icon: "error",
+            title: "2글자 이상 입력해 주세요.",
+          });
+        }
+        if (!regex.test(content)) {
+          return Toast.fire({
+            icon: "error",
+            title: "2글자 이상 입력해 주세요.",
+          });
+        }
+        if (regex.test(name) && regex.test(content)) {
+          Swal.fire(
+            "방명록이 작성 됐습니다!",
+            "",
+
+            "success"
+          ).then(function () {
+            return window.location.reload();
+          });
+          // 실제 파이어베이스에 저장하는 코드
+          await addDoc(collection(db, "guest_book"), write_content);
+          // alert("작성완료");
+          // 페이지 새로고침
+          // return window.location.reload();
+        }
+      });
+
+      // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능.
+      let n = 1;
+      const guest_book = await getDocs(
+        query(collection(db, "guest_book"), orderBy("time", "desc"), limit(n))
+      );
+      guest_book.forEach((doc) => {
+        const data = doc.data();
+
+        // 타임스템프 시간을 사람 눈에 보기 편하게 바꾸는 기능(yy-mm-dd hh:mm:ss)
+        let day = data.time.toDate();
+
+        let year = day.getFullYear();
+        let month = ("0" + (day.getMonth() + 1)).slice(-2);
+        let days = ("0" + day.getDate()).slice(-2);
+        let hours = ("0" + day.getHours()).slice(-2);
+        let minutes = ("0" + day.getMinutes()).slice(-2);
+        let seconds = ("0" + day.getSeconds()).slice(-2);
+
+        let written_time =
+          // year +
+          // "-" +
+          month + "-" + days + " " + hours + ":" + minutes + ":" + seconds;
+
+        //콘솔창에서 데이터 확인 가능
+        console.log("guest_book 데이터 == ", data);
+        console.log("time == ", written_time);
+
+        // 방명록 댓글 html
+        let comment_html = `
+              <div class="flex1">
+              <div class="card1">
+                <div class="card-body">${data.name} <div class"date">(${written_time})</div></div>
+              </div>
+              <div class="card2">
+                <div class="card-body">${data.content}</div>
+              </div>
+            </div>`;
+>>>>>>> f00c9b4b7d02197e1a1128dfaef449915425c08e
 
       $(`#allcard_id`).append(comment_html);
     });
@@ -294,6 +423,7 @@
     <button type="button" class="btn btn-secondary">상세 페이지</button>
   </div>
 
+<<<<<<< HEAD
   <div class="mytitle">
     <h1>
       <캣66 방명록>
@@ -312,6 +442,44 @@
         <button type="button" class="btn btn-secondary" id="write_btn">
           등록
         </button>
+=======
+    <div class="mytitle">
+      <h1><캣66 방명록></h1>
+    </div>
+    <div class="floatingbox">
+      <div class="formcontainer">
+        <div class="name">
+          <type>이름 </type>
+        </div>
+        <div class="form">
+          <input
+            type="email"
+            class="form-control"
+            id="name_input_box"
+            placeholder="2글자 이상 입력해 주세요!"
+          />
+          <label for="floatingInput"></label>
+        </div>
+        <div class="mybtn2">
+          <button type="button" class="btn btn-secondary" id="write_btn">
+            등록
+          </button>
+        </div>
+      </div>
+      <div class="formcontainer2">
+        <div class="name2">
+          <type>내용</type>
+        </div>
+        <div class="form2">
+          <input
+            type="email"
+            class="form-control"
+            id="content_input_box"
+            placeholder="2글자 이상 입력해 주세요!"
+          />
+          <label for="floatingInput"></label>
+        </div>
+>>>>>>> f00c9b4b7d02197e1a1128dfaef449915425c08e
       </div>
     </div>
     <div class="formcontainer2">
