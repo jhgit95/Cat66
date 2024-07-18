@@ -252,7 +252,7 @@
       });
 
       // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능.
-      let n = 1;
+      let n = 10;
       const guest_book = await getDocs(
         query(collection(db, "guest_book"), orderBy("time", "desc"), limit(n))
       );
@@ -291,6 +291,11 @@
 
         $(`#allcard_id`).append(comment_html);
       });
+
+      // 팀 소개 페이지 이동
+      $("#team_details_btn").click(async function () {
+        window.location.assign("detail.html");
+      });
     </script>
   </head>
 
@@ -299,7 +304,9 @@
     <a href="index.html">페이지 이동 테스트 / 메인으로 </a>
 
     <div class="mybtn">
-      <button type="button" class="btn btn-secondary">Home</button>
+      <button type="button" class="btn btn-secondary" id="team_details_btn">
+        팀 소개
+      </button>
     </div>
 
     <div class="mytitle">
