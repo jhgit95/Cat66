@@ -10,13 +10,13 @@
 
       body {
         font-family: "Jua", sans-serif;
-        background-color: white;
-        margin: 0;
+        /* background-color: white; */
+        margin: 0 0 0 0;
       }
 
       .back {
-        width: 100%;
-        background-image: url('./img/main_cat.jpg');
+        width: 100vw;
+        background-image: url('./img/main_cat(2).jpg');
         background-repeat: no-repeat;
         background-size: cover;
 
@@ -34,35 +34,46 @@
       }
 
       .bannerBox > p {
-        margin: 10px auto 0px auto;
-        font-size: 100px;
-        border-radius: 50px;
-        color :  white; 
-        text-shadow: 2px 2px 2px grey;
+        margin: 10px auto 10px auto;
+        font-size: 80px;
+        border-radius: 30px;
+        color: rgb(69, 59, 53); 
+        /* text-shadow: 2px 2px 2px grey; */
 
         cursor: pointer;
         transition: background-color 0.2s ease 0.1s;
+
+        width: 400px;
+        height: 100px;
+
+        border: 7px solid rgb(235, 179, 134);
+        background-color: rgb(255, 242, 231);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
       }
 
       .bannerBox > p:hover {
-        background-color: rgb(180, 179, 179);
+        background-color: rgb(235, 179, 134);
       }
 
       .bannerBox > span {
         font-size: 40px;
-        color : rgb(77, 76, 76);
+        color : rgb(69, 59, 53); 
+        text-shadow: 2px 2px 2px white;
       }
 
       .teamAbout {
-        margin: 10px auto 30px auto;
+        margin: 10px auto 0px auto;
         padding: 20px 20px 20px 20px;
 
         width: 80%;
 
-        border: none;
         border-radius: 20px;
-
-        background-color: rgba( 255, 255, 255, 0.8 );
+        border: 5px solid rgb(235, 179, 134);
+        background-color: rgb(255, 242, 231);
         
         font-size: 20px;
       }
@@ -81,14 +92,14 @@
       .visitBtnWrp {
         display: flex;
         justify-content: flex-end;
-        padding-right: 30px;
+        padding-right: 10px;
         padding-top: 60px;
       }
 
       .visitBtnWrp > div {
         padding: 10px;
 
-        background-color: white;
+        background-color: rgb(253, 218, 190);
         color: rgb(4, 4, 4);
         border-radius: 10px;
 
@@ -98,18 +109,22 @@
       /* 팀원 구역 */
 
       .member_list {
-        background-color: rgb(226, 226, 226);
+        background-color: white;
         width: 80%;
         border-radius: 20px;
 
-            align-self: center;
-            margin: 30px auto 30px auto;
-            padding: 20px 20px 20px 20px;
-        }
+        align-self: center;
+        margin: 30px auto 30px auto;
+        padding: 20px 20px 20px 20px;
+
+        border: 5px solid rgb(235, 179, 134);
+        background-color: rgb(255, 242, 231);
+      }
 
         .member_line {
             padding: 20px 0px 20px 0px;
             overflow: auto;
+            background-color: transparent;
 
             display: flex;
             flex-direction: row;
@@ -130,7 +145,7 @@
         }
 
         .member {
-            background-color: white;
+            background-color:  white;
 
             padding: 10px 10px 10px 10px;
             border-radius: 20px;
@@ -142,7 +157,8 @@
         }
 
         .member>a {
-            font-size: 20px;
+            font-size: 23px;
+            color: rgb(69, 59, 53); 
         }
 
         .photo {
@@ -180,8 +196,9 @@
 
             text-align: center;
 
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(255, 242, 231);
             border-radius: 10px;
+            border: 5px solid rgb(235, 179, 134);
             box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
             /* 모듈창열었을때 위치설정 가운데로  */
@@ -194,7 +211,7 @@
             right: 20px;
             cursor: pointer;
             font-size: 40px;
-            color: #aaa;
+            color: rgb(69, 59, 53); 
         }
 
         .no-scroll {
@@ -216,6 +233,7 @@
             width: 300px;
             height: 350px;
             border-radius: 20px;
+            border: 5px solid white;
             object-fit: cover;
         }
 
@@ -393,7 +411,7 @@
     <div class="back">
     <div class="bannerBox">
       <p onclick="navigate('index.html')"><캣 66></p>
-      <span>Team66</span>
+      <span><b>Team66</b></span>
     </div>
 
     <!-- 나영님 / 팀 내용 구역 -->
