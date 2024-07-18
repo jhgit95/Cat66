@@ -28,140 +28,171 @@
 
     <style>
       /*배경색을 회색으로 바꿔줌*/
-      body {
-        background-color: rgb(255, 247, 236);
-        font-family: "Nanum Gothic", sans-serif;
-      }
+    body {
+      background-color: rgb(255, 247, 236);
 
-      .mytitle {
-        /*글씨를 중앙으로 가기 위한 코드*/
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      background-image: url('https://img.freepik.com/free-vector/set-vector-cute-cartoonish-cats-isolated-white-background_8130-951.jpg?ga=GA1.1.1026332824.1721297031&semt=sph');
+    }
 
-        /* 위에 임의로 여백을 80 정도 둠*/
-        padding-top: 10px;
+    .mytitle {
+      /*글씨를 중앙으로 가기 위한 코드*/
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-        color: black;
-      }
+      /* 위에 임의로 여백을 80 정도 둠*/
+      padding-top: 30px;
 
-      /* 플로팅 배경색은 흰색 , margin으로 정중앙으로 오게 만들었고
+      color: black;
+    }
+
+
+    /* 플로팅 배경색은 흰색 , margin으로 정중앙으로 오게 만들었고
               padding으로 여백 다 50씩 밑부분만 20 , 모서리를 흰색 으로 만들었고 5px 살짝 둥글게 만듬
+              floatingbox의 width를 90%로 설정하고, max-width를 1350px로 설정하여 화면 크기에 조정하게 만듬
+
           */
-      .floatingbox {
-        background-color: rgb(255, 237, 191);
-        width: 1350px;
+    .floatingbox {
+      background-color: rgb(255, 237, 191);
+      width: 500px;
 
-        margin: 100px auto 0px auto;
-        padding: 50px 50px 20px 50px;
+      margin: 100px auto 0px auto;
+      padding: 50px 50px 20px 50px;
 
-        box-shadow: 0px 0px 3px 0px white;
+      box-shadow: 0px 0px 3px 0px white;
 
-        border-radius: 5px;
-      }
+      border-radius: 5px;
+    }
 
-      /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
-      .form > input {
-        background-color: #c0c0c0;
-      }
+    .name9 {
+      padding-right: 20px;
+      white-space: nowrap;
+    }
 
-      .form2 > input {
-        background-color: #c0c0c0;
-        width: 1110px;
-        height: 200px;
-      }
+    /* 플로팅 안에 있는 박스 색상 : 회색 /  일자로 정렬하게 만들려면 flex 기능을 씀*/
+    .form>input {
+      background-color: #c0c0c0;
+    }
 
-      .formcontainer {
-        display: flex;
-      }
+    .form2>input {
+      background-color: #c0c0c0;
+      width: 330px;
+      height: 80px;
+    }
 
-      .formcontainer2 {
-        display: flex;
-      }
+    .formcontainer {
+      display: flex;
+    }
 
-      /* 안에 있는 박스들도 크기랑 여백 설정*/
-      .form {
-        width: 1000px;
-        padding-left: 10px;
-        margin-right: 20px;
-      }
+    .formcontainer2 {
+      display: flex;
+    }
 
-      .form2 {
-        padding-left: 10px;
-        margin-right: 10px;
-      }
+    /* 안에 있는 박스들도 크기랑 여백 설정*/
+    .form {
+      width: 300px;
+      padding-left: 10px;
+      margin-right: 20px;
+    }
 
-      .mybtn {
-        padding-top: 20px;
-        margin-left: 1600px;
-      }
+    .form2 {
+      padding-left: 10px;
+      margin-right: 10px;
+    }
 
-      .mybtn > button {
-        background-color: gray;
-        width: 80px;
-        height: 40px;
-      }
+    /*반응형으로 만들어서 축소화 시켜도 항상 home이 오른쪽 끝에 보임*/
+    .mybtn {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 20px;
 
-      /*버튼 형태를 가로 100 더 줌*/
-      .mybtn2 > button {
-        background-color: gray;
-        width: 100px;
-      }
 
-      .allcard {
-        width: 1350px;
+    }
 
-        margin: 100px auto 150px auto;
-      }
+    /* 폰트 11, 글자가 넘쳐서 한줄로 할려면 nowrap을 써야했음*/
+    .mybtn>button {
+      background-color: gray;
+      width: 80px;
+      height: 40px;
+      font-size: 11px;
+      white-space: nowrap;
 
-      /*  한 칸을 만들어서 그 칸으로 세로로 나눌려고 했는데 잘안됨 그래서 칸2개로 나눠서 겹쳤음
+    }
+
+    /*버튼 형태를 가로 100 더 줌*/
+    .mybtn2>button {
+      background-color: gray;
+      width: 100px;
+    }
+
+    .date {
+      font-size: 10px;
+    }
+
+    .allcard {
+      width: 550px;
+
+      margin: 100px auto 150px auto;
+    }
+
+    /*  한 칸을 만들어서 그 칸으로 세로로 나눌려고 했는데 잘안됨 그래서 칸2개로 나눠서 겹쳤음
 
           card1 : 왼쪽 작은 칸, 그림자로 세로선을 표시,글자를 중앙으로 이동함.
-          card2 : 오른쪽 큰 칸, 그림자가 보이게 margin-left:2px 정도 띄움 
+          card2 : 오른쪽 큰 칸, 그림자가 보이게 margin-left:2px 정도 띄움  수직선 효과를 위한 오른쪽 테두리 추가 
+          
+          card1,car2 flex기능을 각각 넣어서 같은 선상을 맞춤
           
           flex1으로 border-raidus 할려고 했는데 적용이 안돼서 card 1,2에다 따로 적용
       */
-      .card1 {
-        border-radius: 3px;
-        width: 200px;
-        background-color: white;
-        box-shadow: 10px 0px 0px 0px #c0c0c0;
+    .card1 {
+      border-radius: 3px;
+      width: 400px;
+      background-color: white;   
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+      border-right: 5px solid #c0c0c0;
+    }
 
-        display: flex;
-        flex-direction: row;
-        align-items: center;
 
-        text-align: center;
-      }
-      .card2 {
-        width: 1200px;
-        height: 70px;
-        background-color: white;
-        border-radius: 3px;
-        margin-left: 2px;
-      }
+    .card2 {
+      width: 1200px;
+      height: 70px;
+      background-color: white;
+      border-radius: 3px;
+      
+      display: flex;
+      
+      
 
-      .flex1 {
-        margin-top: 10px;
-        display: flex;
-      }
-      .flex2 {
-        margin-top: 10px;
-        display: flex;
-      }
+    }
 
-      .flex3 {
-        margin-top: 10px;
-        display: flex;
-      }
+    .flex1 {
+      margin-top: 10px;
+      display: flex;
+    }
 
-      .flex4 {
-        margin-top: 10px;
-        display: flex;
-      }
-      .card-body {
-        background-color: #dcdcdc;
-      }
+    .flex2 {
+      margin-top: 10px;
+      display: flex;
+    }
+
+    .flex3 {
+      margin-top: 10px;
+      display: flex;
+    }
+
+    .flex4 {
+      margin-top: 10px;
+      display: flex;
+    }
+
+    .card-body {
+      background-color: #dcdcdc;
+      white-space: nowrap;
+
+    }
     </style>
 
     <script type="module">
@@ -282,7 +313,7 @@
         let comment_html = `
               <div class="flex1">
               <div class="card1">
-                <div class="card-body">${data.name} <div class"date">(${written_time})</div></div>
+                <div class="card-body">${data.name} <div class="date">(${written_time})</div></div>
               </div>
               <div class="card2">
                 <div class="card-body">${data.content}</div>
@@ -300,9 +331,6 @@
   </head>
 
   <body>
-    <h3>cat66의 방명록 페이지 입니다.</h3>
-    <a href="index.html">페이지 이동 테스트 / 메인으로 </a>
-
     <div class="mybtn">
       <button type="button" class="btn btn-secondary" id="team_details_btn">
         팀 소개
@@ -314,7 +342,7 @@
     </div>
     <div class="floatingbox">
       <div class="formcontainer">
-        <div class="name">
+        <div class="name9">
           <type>이름 </type>
         </div>
         <div class="form">
@@ -333,7 +361,7 @@
         </div>
       </div>
       <div class="formcontainer2">
-        <div class="name2">
+        <div class="name9">
           <type>내용</type>
         </div>
         <div class="form2">
