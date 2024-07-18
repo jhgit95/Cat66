@@ -60,6 +60,7 @@
         border-radius: 30px;
 
         background-color: rgb(255, 242, 231);
+        transition: background-color 0.2s ease 0.1s;
       }
 
       .mytitle:hover {
@@ -82,7 +83,7 @@
       }
 
       .visitBtn {
-        margin-top: 20px;
+        margin: 20px 0 40px 0;
         padding: 10px;
 
         border-radius: 10px;
@@ -90,6 +91,11 @@
         color: rgb(4, 4, 4);
 
         cursor: pointer;
+        transition: background-color 0.2s ease 0.1s;
+      }
+
+      .visitBtn:hover {
+        background-color: rgb(235, 179, 134);
       }
 
       .floatingbox {
@@ -366,8 +372,8 @@
     </div>
 
     <div style="display: flex; justify-content: center">
-      <div class="mytitle">
-        <div onclick="navigate('index.html')"><캣66></div>
+      <div class="mytitle" onclick="navigate('index.html')">
+        <div><캣66></div>
       </div>
     </div>
 
