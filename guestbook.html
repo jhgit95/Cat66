@@ -19,6 +19,13 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- sweetalert2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
     <style>
       /*배경색을 회색으로 바꿔줌*/
       body {
@@ -186,6 +193,19 @@
 
       // JS 작성 구역
 
+      //토스트 팝업
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center-center",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
       // 현재 시간 생성
       const now = new Date();
 
@@ -200,19 +220,39 @@
           content: content,
           time: now,
         };
+        // alret("zz");
+        const regex = /^.{2,}$/;
+        if (!regex.test(name)) {
+          return Toast.fire({
+            icon: "error",
+            title: "2글자 이상 입력해 주세요.",
+          });
+        }
+        if (!regex.test(content)) {
+          return Toast.fire({
+            icon: "error",
+            title: "2글자 이상 입력해 주세요.",
+          });
+        }
+        if (regex.test(name) && regex.test(content)) {
+          Swal.fire(
+            "방명록이 작성 됐습니다!",
+            "",
 
-        // 실제 파이어베이스에 저장하는 코드
-        await addDoc(collection(db, "guest_book"), write_content);
-
-        //알림창
-        alert("댓글 작성 완료~");
-
-        // 페이지 새로고침
-        window.location.reload();
+            "success"
+          ).then(function () {
+            return window.location.reload();
+          });
+          // 실제 파이어베이스에 저장하는 코드
+          await addDoc(collection(db, "guest_book"), write_content);
+          // alert("작성완료");
+          // 페이지 새로고침
+          // return window.location.reload();
+        }
       });
 
       // 파이어베이스에서 방명록 작성한 내용 n개를 가져오는 기능.
-      let n = 5;
+      let n = 1;
       const guest_book = await getDocs(
         query(collection(db, "guest_book"), orderBy("time", "desc"), limit(n))
       );
@@ -240,14 +280,14 @@
 
         // 방명록 댓글 html
         let comment_html = `
-        <div class="flex1">
-        <div class="card1">
-          <div class="card-body">${data.name} <div class"date">(${written_time})</div></div>
-        </div>
-        <div class="card2">
-          <div class="card-body">${data.content}</div>
-        </div>
-      </div>`;
+              <div class="flex1">
+              <div class="card1">
+                <div class="card-body">${data.name} <div class"date">(${written_time})</div></div>
+              </div>
+              <div class="card2">
+                <div class="card-body">${data.content}</div>
+              </div>
+            </div>`;
 
         $(`#allcard_id`).append(comment_html);
       });
@@ -275,7 +315,7 @@
             type="email"
             class="form-control"
             id="name_input_box"
-            placeholder="이름"
+            placeholder="2글자 이상 입력해 주세요!"
           />
           <label for="floatingInput"></label>
         </div>
@@ -294,7 +334,7 @@
             type="email"
             class="form-control"
             id="content_input_box"
-            placeholder="내용"
+            placeholder="2글자 이상 입력해 주세요!"
           />
           <label for="floatingInput"></label>
         </div>
