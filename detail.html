@@ -127,12 +127,13 @@
         font-size: 20px;
       }
 
-      .photo {
-        width: 200px;
-        height: 150px;
-        border-radius: 20px;
-        margin-bottom: 5px;
-      }
+        .photo {
+            width: 200px;
+            height: 150px;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            object-fit: cover;
+        }
 
       /* modal */
       .modal {
@@ -214,30 +215,29 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
-      // 페이지가 로드될 때 실행되는 함수
-      window.onload = async function () {
-        try {
-          const querySnapshot = await getDocs(collection(db, "team"));
-          querySnapshot.forEach((doc) => {
-            const teamData = {
-              // 객체 형태로 선언
-              teamName: doc.data().name,
-              teamIntroduction: doc.data().introduction,
-              teamProject: doc.data().project,
-              teamGoal: doc.data().goal,
-              teamTime: doc.data().time,
-              teamRule: doc.data().rule,
-            };
 
-            // body에 데이터 표시하기, 객체 형태로 할당
-            document.getElementById("teamName").innerText = teamData.teamName;
-            document.getElementById("teamIntroduction").innerText =
-              teamData.teamIntroduction;
-            document.getElementById("teamProject").innerText =
-              teamData.teamProject;
-            document.getElementById("teamGoal").innerText = teamData.teamGoal;
-            // document.getElementById('teamTime').innerText = teamData.teamTime;
-            // document.getElementById('teamRule').innerText = teamData.teamRule;
+        // 팀 소개 데이터를 가져오고 화면에 띄우는 함수 (나영)
+        async function loadTeam() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'team'));
+                querySnapshot.forEach(doc => {
+
+                    const teamData = { // 객체 형태로 선언
+                        teamName: doc.data().name,
+                        teamIntroduction: doc.data().introduction,
+                        teamProject: doc.data().project,
+                        teamGoal: doc.data().goal,
+                        teamTime: doc.data().time,
+                        teamRule: doc.data().rule
+                    };
+                    
+                    // body에 데이터 표시하기, 객체 형태로 할당
+                    document.getElementById('teamName').innerText = teamData.teamName;
+                    document.getElementById('teamIntroduction').innerText = teamData.teamIntroduction;
+                    document.getElementById('teamProject').innerText = teamData.teamProject;
+                    document.getElementById('teamGoal').innerText = teamData.teamGoal;
+                    // document.getElementById('teamTime').innerText = teamData.teamTime;
+                    // document.getElementById('teamRule').innerText = teamData.teamRule;
 
             const teamTimeContainer =
               document.getElementById("teamTimeContainer");
@@ -249,26 +249,49 @@
               teamTimeContainer.appendChild(document.createElement("br"));
             });
 
-            const teamRuleContainer =
-              document.getElementById("teamRuleContainer");
-            teamRuleContainer.innerHTML = ""; // 기존 내용을 초기화
-            teamData.teamRule.forEach((rule, index) => {
-              const ruleElement = document.createElement("span");
-              ruleElement.innerText = `${index + 1}) ${rule}`;
-              teamRuleContainer.appendChild(ruleElement);
-              teamRuleContainer.appendChild(document.createElement("br"));
-            });
-          });
-        } catch (error) {
-          console.error("팀 데이터 불러오기 오류 : ", error);
+                    const teamRuleContainer = document.getElementById('teamRuleContainer');
+                    teamRuleContainer.innerHTML = ''; // 기존 내용을 초기화
+                    teamData.teamRule.forEach((rule, index) => {
+                        const ruleElement = document.createElement('span');
+                        ruleElement.innerText = `${index + 1}) ${rule}`;
+                        teamRuleContainer.appendChild(ruleElement);
+                        teamRuleContainer.appendChild(document.createElement('br')); 
+                    });
+                });
+            } catch (error) {
+                console.error('팀 데이터 불러오기 오류 : ', error);
+            }
+        };
+        
+        // member 이름, 사진 로드 함수 (지은)
+        async function loadMembers() {
+            const members = await getDocs(collection(db, 'member'));
+                let index = 1;
+                members.forEach((member) => {
+                    const memberPhoto = member.data().photo;
+                    const memberName = member.data().name;
+                    
+                    document.getElementById(`img_member${index}`).src = memberPhoto;
+                    document.getElementById(`name_member${index++}`).textContent = memberName;
+                });
         }
-      };
 
-      // modal 띄우기 (img 클릭 시)
-      document.addEventListener("DOMContentLoaded", () => {
-        const modal = document.querySelector(".modal");
-        const modalClose = document.querySelector(".modal_close");
-        const photos = document.querySelectorAll(".photo");
+        // 페이지 로드 시 데이터 초기화 
+        function initialize() {
+            loadTeam();
+            loadMembers();
+        }
+
+        // 페이지가 로드될 때 실행
+        window.onload = initialize;
+        
+
+        
+        // modal 띄우기 (img 클릭 시)
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.querySelector('.modal');
+            const modalClose = document.querySelector('.modal_close');
+            const photos = document.querySelectorAll('.photo');
 
         photos.forEach((photo) => {
           photo.addEventListener("click", () => {
@@ -340,30 +363,30 @@
 
     <!-- 지은님 / 팀원 구역 -->
     <div class="memberlist">
-      <div class="memberline">
-        <div class="member">
-          <img class="photo" src="./test/cat.jpg" />
-          <a>member1</a>
+        <div class="memberline">
+            <div class="member">
+                <img id="img_member1" class="photo" src="./test/cat.jpg">
+                <a id="name_member1">member1</a>
+            </div>
+            <div class="member">
+                <img id="img_member2" class="photo" src="./test/cat.jpg">
+                <a id="name_member2">member2</a>
+            </div>
         </div>
-        <div class="member">
-          <img class="photo" src="./test/cat.jpg" />
-          <a>member2</a>
+        <div class="memberline">
+            <div class="member">
+                <img id="img_member3" class="photo" src="./test/cat.jpg">
+                <a id="name_member3">member3</a>
+            </div>
+            <div class="member">
+                <img id="img_member4" class="photo" src="./test/cat.jpg">
+                <a  id="name_member4">member4</a>
+            </div>
+            <div class="member">
+                <img id="img_member5" class="photo" src="./test/cat.jpg">
+                <a  id="name_member5">member5</a>
+            </div>
         </div>
-      </div>
-      <div class="memberline">
-        <div class="member">
-          <img class="photo" src="./test/cat.jpg" />
-          <a>member3</a>
-        </div>
-        <div class="member">
-          <img class="photo" src="./test/cat.jpg" />
-          <a>member4</a>
-        </div>
-        <div class="member">
-          <img class="photo" src="./test/cat.jpg" />
-          <a>member5</a>
-        </div>
-      </div>
     </div>
 
     <div class="modal">
