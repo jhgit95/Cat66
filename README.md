@@ -1,5 +1,7 @@
 ![헤더 이미지](assets/readMe/header.png)
 
+<div align="center">
+
 ## # 팀 소개 Team About
 팀명 Team Name : 팀 66 Team 66 </br>
 " 우리는 자바 6기 6조. 개발자가 되기 위해 왔지🌟 "
@@ -31,25 +33,29 @@
 ![와이어프레임 이미지](assets/readMe/wireFrame.png)
 
 ## # 커밋 컨벤션 Commit Convention
-ADD: 파일, 플러그인, 에셋 등 새로운 내용 추가</br>
-FEAT: 새로운 기능 추가</br>
-DESIGN: CSS 등 사용자 UI 디자인 변경</br>
-FIX: 버그 수정 완료</br>
-TEST: 테스트 코드 , 리팩토링 테스트 코드 추가</br>
-CHORE: 그 외 자잘한 수정</br>
-BUILD: 빌드 관련 파일 수정</br>
-UPDATE: 기능 변경에 따른 코드 수정</br>
 
-DOCS: 문서 수정</br>
-STYLE: 코드 스타일 혹은 포맷 관련 수정</br>
-REFACTOR: 코드 리팩토리</br>
-COMMENT : 필요한 주석 추가 및 변경</br>
-RENAME : 파일 또는 폴더 명을 수정하거나 옮기는 작업만인 경우</br>
-REMOVE : 파일을 삭제하는 작업만 수행한 경우</br>
-!HOTFIX : 급하게 치명적인 버그를 고쳐야 하는 경우</br>
+| 키워드    | 용도                                              |
+|-----------|---------------------------------------------------|
+| ADD       | 파일, 플러그인, 에셋 등 새로운 내용 추가             |
+| FEAT      | 새로운 기능 추가                                  |
+| DESIGN    | CSS 등 사용자 UI 디자인 변경                      |
+| FIX       | 버그 수정 완료                                    |
+| TEST      | 테스트 코드, 리팩토링 테스트 코드 추가             |
+| CHORE     | 그 외 자잘한 수정                                 |
+| BUILD     | 빌드 관련 파일 수정                               |
+| UPDATE    | 기능 변경에 따른 코드 수정                        |
+| DOCS      | 문서 수정                                         |
+| STYLE     | 코드 스타일 혹은 포맷 관련 수정                   |
+| REFACTOR  | 코드 리팩토링                                     |
+| COMMENT   | 필요한 주석 추가 및 변경                          |
+| RENAME    | 파일 또는 폴더 명을 수정하거나 옮기는 작업만인 경우 |
+| REMOVE    | 파일을 삭제하는 작업만 수행한 경우                |
+| !HOTFIX   | 급하게 치명적인 버그를 고쳐야 하는 경우           |
 
 ## # 관련 링크 Link
 ##### # 캣66 웹사이트 https://cat66.vercel.app/index.html 🧶
 ##### # 깃허브 주소 https://github.com/jhgit95/Cat66.git 💾
 ##### # 노션 주소 https://www.notion.so/teamsparta/66-66-7320a6a900524d43a50420cd107dc434 📒
 
+
+</div>
